@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+button,
+input {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  color: inherit;
+  font-size: inherit;
+
+  cursor: pointer;
+}
+
+figure {
+  display: block;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
