@@ -1,7 +1,14 @@
 import React from "react";
+
+import useRepo from "hooks/useRepo";
+
 import "./style.scss";
 
-function App() {
+const App = () => {
+  const { owner, repo, commits, isLoading, error } = useRepo();
+
+  console.log(owner, repo, commits, isLoading, error);
+
   return (
     <div className="App">
       <h1>Repo Surf</h1>
@@ -15,6 +22,6 @@ function App() {
       </p>
     </div>
   );
-}
+};
 
 export default App;
