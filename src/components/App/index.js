@@ -4,6 +4,7 @@ import * as THREE from "three";
 
 import DummyBlock from "components/DummyBlock";
 import Effects from "components/Effects";
+import Stats from "components/Stats";
 import useRepo from "hooks/useRepo";
 
 import "./style.scss";
@@ -43,6 +44,8 @@ const App = () => {
       <DummyBlock />
 
       <Effects />
+
+      <Stats />
     </Canvas>
   );
 };
