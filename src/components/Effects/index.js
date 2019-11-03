@@ -6,7 +6,7 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 
 extend({ EffectComposer, RenderPass, UnrealBloomPass });
 
-export default function Effects() {
+const Effects = () => {
   const composer = useRef();
   const { scene, gl, size, camera } = useThree();
 
@@ -20,4 +20,6 @@ export default function Effects() {
       <unrealBloomPass attachArray="passes" args={[undefined, 0.5, 1, 0]} />
     </effectComposer>
   );
-}
+};
+
+export default Effects;
