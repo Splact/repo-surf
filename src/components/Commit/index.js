@@ -4,20 +4,21 @@ import { useFrame } from "react-three-fiber";
 import { useConfig } from "utils/config";
 
 const span = 150;
-let movement = 0;
 
 const Commit = () => {
   const ref = useRef();
+  const movement = useRef(0);
   const { radius, color, emissiveIntensity } = useConfig(state => state.commit);
   const speed = useConfig(state => state.speed);
 
   useEffect(() => {
     ref.current.rotation.x = -Math.PI / 2;
+    ref.current.position.y = 0.1;
   }, []);
 
   useFrame(() => {
-    movement = Math.abs((movement + speed) % span);
-    ref.current.position.z = -span + movement;
+    movement.current = Math.abs((movement.current + speed) % span);
+    ref.current.position.z = -span + movement.current;
   });
 
   return (

@@ -4,7 +4,9 @@ import * as THREE from "three";
 
 import Commit from "components/Commit";
 import Effects from "components/Effects";
+import OrbitControls from "components/OrbitControls";
 import Stats from "components/Stats";
+import Track from "components/Track";
 import useRepo from "hooks/useRepo";
 import { DatGui } from "utils/config";
 
@@ -18,6 +20,7 @@ const cameraSettings = {
 };
 const backgroundColor = new THREE.Color("#0C0E16");
 const handleCameraInit = camera => {
+  camera.position.set(...cameraSettings.position);
   camera.lookAt(0, 0, -25);
 };
 const handleCanvasCreate = ({ gl, camera }) => {
@@ -43,10 +46,16 @@ const App = () => {
         <ambientLight intensity={0.25} />
 
         <Commit />
+        <Track />
 
         <Effects />
 
         <Stats />
+
+        <OrbitControls
+          cameraPosition={cameraSettings.position}
+          cameraTarget={[0, 0, -25]}
+        />
       </Canvas>
 
       <DatGui />
