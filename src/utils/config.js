@@ -20,6 +20,12 @@ export const [useConfig] = create(set => ({
     color: "#8ACB67",
     emissiveIntensity: 1
   },
+  camera: {
+    xVariation: 1,
+    yVariation: 4,
+    zVariation: 12,
+    variationDuration: 15
+  },
   speed: 0.5,
   isOrbitControlsEnabled: false,
   set
@@ -33,6 +39,37 @@ export const DatGui = () => {
     <ReactDatGui data={data} onUpdate={handleUpdate}>
       <DatNumber path="speed" label="Speed" min={0} max={2} step={0.001} />
       <DatBoolean path="isOrbitControlsEnabled" label="Orbit Controls" />
+
+      <DatFolder title="Camera">
+        <DatNumber
+          path="camera.xVariation"
+          label="Variation on X"
+          min={0}
+          max={25}
+          step={0.1}
+        />
+        <DatNumber
+          path="camera.yVariation"
+          label="Variation on Y"
+          min={0}
+          max={25}
+          step={0.1}
+        />
+        <DatNumber
+          path="camera.zVariation"
+          label="Variation on Z"
+          min={0}
+          max={25}
+          step={0.1}
+        />
+        <DatNumber
+          path="camera.variationDuration"
+          label="Duration of variation (s)"
+          min={0.5}
+          max={100}
+          step={0.1}
+        />
+      </DatFolder>
 
       <DatFolder title="Commit">
         <DatNumber

@@ -2,6 +2,7 @@ import React from "react";
 import { Canvas } from "react-three-fiber";
 import * as THREE from "three";
 
+import CameraOperator from "components/CameraOperator";
 import Commit from "components/Commit";
 import Effects from "components/Effects";
 import OrbitControls from "components/OrbitControls";
@@ -47,6 +48,8 @@ const App = () => {
 
         <Commit />
         <Track />
+
+        <CameraOperator />
 
         <Effects />
 
