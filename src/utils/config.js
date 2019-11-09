@@ -24,17 +24,19 @@ export const [useConfig] = create(set => ({
     position: {
       x: 0,
       y: 25,
-      z: 0
+      z: -200
     },
     near: 0.01,
     far: 1000,
     fov: 70,
-    xVariation: 1,
-    yVariation: 4,
-    zVariation: 12,
+    xVariation: 10,
+    yVariation: 20,
+    zVariation: 0,
     variationDuration: 15
   },
-  speed: 0.5,
+  speed: 0.7,
+  commitsDistance: 150,
+  branchesDistance: 25,
   isOrbitControlsEnabled: false,
   set
 }));
@@ -45,51 +47,71 @@ export const DatGui = () => {
 
   return (
     <ReactDatGui data={data} onUpdate={handleUpdate}>
-      <DatNumber path="speed" label="Speed" min={0} max={2} step={0.001} />
+      <DatNumber
+        path="speed"
+        label="Speed (commit/s)"
+        min={0}
+        max={2}
+        step={0.1}
+      />
+      <DatNumber
+        path="commitsDistance"
+        label="Commits distance"
+        min={5}
+        max={500}
+        step={5}
+      />
+      <DatNumber
+        path="branchesDistance"
+        label="Branches distance"
+        min={5}
+        max={500}
+        step={5}
+      />
       <DatBoolean path="isOrbitControlsEnabled" label="Orbit Controls" />
 
       <DatFolder title="Camera">
         <DatNumber
           path="camera.position.x"
           label="Position (x)"
-          min={-100}
-          max={100}
-          step={0.1}
+          min={0}
+          max={1000}
+          step={1}
         />
         <DatNumber
           path="camera.position.y"
           label="Position (y)"
-          min={-100}
-          max={100}
-          step={0.1}
+          min={0}
+          max={1000}
+          step={1}
         />
         <DatNumber
-          path="camera.position.y"
-          label="Position (y)"
-          min={-100}
-          max={100}
-          step={0.1}
+          path="camera.position.z"
+          label="Position (z)"
+          min={-250}
+          max={1000}
+          step={1}
         />
         <DatNumber
           path="camera.xVariation"
           label="Variation (x)"
           min={0}
           max={25}
-          step={0.1}
+          step={1}
         />
         <DatNumber
           path="camera.yVariation"
           label="Variation (y)"
           min={0}
           max={25}
-          step={0.1}
+          step={1}
         />
         <DatNumber
           path="camera.zVariation"
           label="Variation (z)"
           min={0}
-          max={25}
-          step={0.1}
+          max={150}
+          step={1}
         />
         <DatNumber
           path="camera.variationDuration"

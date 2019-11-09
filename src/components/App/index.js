@@ -30,7 +30,7 @@ const App = () => (
       pixelRatio={window.devicePixelRatio}
       updateDefaultCamera
     >
-      <fog attach="fog" args={[backgroundColor, 50, 100]} />
+      <fog attach="fog" args={[backgroundColor, 150, 200]} />
       <ambientLight intensity={0.25} />
 
       <Surf />

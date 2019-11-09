@@ -1,40 +1,64 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useFrame } from "react-three-fiber";
+import { useSpring, a } from "react-spring/three";
 
 import { useConfig } from "utils/config";
 
-const span = 150;
-
-const Commit = () => {
+const Commit = ({ index, branchIndex }) => {
   const ref = useRef();
-  const movement = useRef(0);
-  const { radius, color, emissiveIntensity } = useConfig(state => state.commit);
-  const speed = useConfig(state => state.speed);
+
+  const speed = useConfig(config => config.speed);
+  const commitsDistance = useConfig(config => config.commitsDistance);
+  const branchesDistance = useConfig(config => config.branchesDistance);
+  const { radius, color, emissiveIntensity } = useConfig(
+    config => config.commit
+  );
+
+  const [isActive, setIsActive] = useState(false);
+
+  const [spring, set] = useSpring(() => ({
+    scale: [0.01, 0.01, 0.01],
+    position: [0, 0.1, 0],
+    rotation: [-Math.PI / 2, 0, 0]
+  }));
 
   useEffect(() => {
-    ref.current.rotation.x = -Math.PI / 2;
-    ref.current.position.y = 0.1;
-  }, []);
+    set({
+      position: [-branchIndex * branchesDistance, 0.1, index * commitsDistance]
+    });
+  }, [set, index, branchIndex, branchesDistance, commitsDistance]);
 
-  useFrame(() => {
-    movement.current = Math.abs((movement.current + speed) % span);
-    ref.current.position.z = -span + movement.current;
+  useEffect(() => {
+    if (isActive) {
+      // open it
+      set({ scale: [1, 1, 1] });
+    } else {
+      // close it
+      set({ scale: [0.01, 0.01, 0.01] });
+    }
+  }, [isActive, set]);
+
+  useFrame(({ clock }) => {
+    if (!isActive) {
+      if (clock.elapsedTime * speed > index + 1) {
+        setIsActive(true);
+      }
+    } else if (clock.elapsedTime * speed < index + 1) {
+      setIsActive(true);
+    }
   });
 
   return (
-    <mesh
-      ref={ref}
-      onClick={e => console.log("click")}
-      onPointerOver={e => console.log("hover")}
-      onPointerOut={e => console.log("unhover")}
-    >
+    <a.mesh ref={ref} {...spring}>
       <circleBufferGeometry attach="geometry" args={[radius, 24]} />
       <meshLambertMaterial
         attach="material"
         emissive={color}
         emissiveIntensity={emissiveIntensity}
+        transparent
+        opacity={isActive ? 1 : 0}
       />
-    </mesh>
+    </a.mesh>
   );
 };
 

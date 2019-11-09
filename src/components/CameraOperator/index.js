@@ -3,6 +3,8 @@ import { useFrame } from "react-three-fiber";
 import { useConfig } from "utils/config";
 
 const CameraOperator = () => {
+  const speed = useConfig(config => config.speed);
+  const commitsDistance = useConfig(config => config.commitsDistance);
   const {
     position: { x, y, z },
     xVariation,
@@ -16,12 +18,14 @@ const CameraOperator = () => {
 
     const alpha = (clock.elapsedTime / variationDuration) * Math.PI * 2;
 
-    // camera.position.set;
+    const headZ = clock.elapsedTime * speed * commitsDistance - commitsDistance;
+
     camera.position.x = x + xVariation * Math.cos(alpha);
     camera.position.y = y + yVariation * Math.sin(alpha);
-    camera.position.z = z + zVariation * Math.sin(alpha) * Math.cos(alpha);
+    camera.position.z =
+      z + headZ + zVariation * Math.sin(alpha) * Math.cos(alpha);
 
-    camera.lookAt(0, 0, -25);
+    camera.lookAt(0, 0.1, headZ);
   });
 
   return null;
