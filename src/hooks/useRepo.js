@@ -14,9 +14,11 @@ const getRepoParamsFromPath = () => {
 };
 
 export default () => {
-  const [commits, setCommits] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [state, setState] = useState({
+    commits: [],
+    isLoading: true,
+    error: null
+  });
 
   const { owner, repo } = getRepoParamsFromPath();
 
@@ -27,13 +29,10 @@ export default () => {
   useEffect(() => {
     async function fetch() {
       try {
-        setIsLoading(true);
         const cc = await fetchCommits(owner, repo);
-        setCommits(cc);
+        setState(state => ({ ...state, commits: cc, isLoading: false }));
       } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
+        setState(state => ({ ...state, isLoading: false, error }));
       }
     }
 
@@ -42,5 +41,5 @@ export default () => {
     }
   }, [owner, repo]);
 
-  return { owner, repo, commits, isLoading, error };
+  return { owner, repo, ...state };
 };
