@@ -21,6 +21,14 @@ export const [useConfig] = create(set => ({
     emissiveIntensity: 1
   },
   camera: {
+    position: {
+      x: 0,
+      y: 25,
+      z: 0
+    },
+    near: 0.01,
+    far: 1000,
+    fov: 70,
     xVariation: 1,
     yVariation: 4,
     zVariation: 12,
@@ -42,22 +50,43 @@ export const DatGui = () => {
 
       <DatFolder title="Camera">
         <DatNumber
+          path="camera.position.x"
+          label="Position (x)"
+          min={-100}
+          max={100}
+          step={0.1}
+        />
+        <DatNumber
+          path="camera.position.y"
+          label="Position (y)"
+          min={-100}
+          max={100}
+          step={0.1}
+        />
+        <DatNumber
+          path="camera.position.y"
+          label="Position (y)"
+          min={-100}
+          max={100}
+          step={0.1}
+        />
+        <DatNumber
           path="camera.xVariation"
-          label="Variation on X"
+          label="Variation (x)"
           min={0}
           max={25}
           step={0.1}
         />
         <DatNumber
           path="camera.yVariation"
-          label="Variation on Y"
+          label="Variation (y)"
           min={0}
           max={25}
           step={0.1}
         />
         <DatNumber
           path="camera.zVariation"
-          label="Variation on Z"
+          label="Variation (z)"
           min={0}
           max={25}
           step={0.1}

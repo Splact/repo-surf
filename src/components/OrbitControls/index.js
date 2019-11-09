@@ -6,7 +6,7 @@ import { useConfig } from "utils/config";
 
 extend({ OrbitControls: THREEOrbitControls });
 
-const OrbitControls = ({ cameraPosition, cameraTarget }) => {
+const OrbitControls = () => {
   const { camera, gl } = useThree();
   const ref = useRef(null);
   const isEnabled = useConfig(config => config.isOrbitControlsEnabled);
