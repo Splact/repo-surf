@@ -30,6 +30,27 @@ export default () => {
     async function fetch() {
       try {
         const cc = await fetchCommits(owner, repo);
+        const branches = [];
+
+        if (cc.length) {
+          branches.push([cc[0].sha]);
+
+          cc.forEach((c, i) => {
+            const branchIndex = branches.findIndex(
+              b => !!b.find(sha => sha === c.sha)
+            );
+
+            c.branchIndex = branchIndex;
+
+            c.parents.forEach((p, pi) => {
+              if (branches.length < branchIndex + pi + 1) {
+                branches[branchIndex + pi] = [];
+              }
+              branches[branchIndex + pi].push(p.sha);
+            });
+          });
+        }
+
         setState(state => ({ ...state, commits: cc, isLoading: false }));
       } catch (error) {
         setState(state => ({ ...state, isLoading: false, error }));

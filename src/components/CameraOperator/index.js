@@ -5,6 +5,9 @@ import { useConfig } from "utils/config";
 const CameraOperator = () => {
   const speed = useConfig(config => config.speed);
   const commitsDistance = useConfig(config => config.commitsDistance);
+  const isOrbitControlsEnabled = useConfig(
+    config => config.isOrbitControlsEnabled
+  );
   const {
     position: { x, y, z },
     xVariation,
@@ -14,6 +17,10 @@ const CameraOperator = () => {
   } = useConfig(state => state.camera);
 
   useFrame(state => {
+    if (isOrbitControlsEnabled) {
+      return;
+    }
+
     const { camera, clock } = state;
 
     const alpha = (clock.elapsedTime / variationDuration) * Math.PI * 2;

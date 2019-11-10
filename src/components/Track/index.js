@@ -1,24 +1,25 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import { useConfig } from "utils/config";
+import { useFrame } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
+
+import { useConfig } from "utils/config";
 
 const Track = () => {
   const ref = useRef();
 
-  const { width, length, color, emissiveIntensity } = useConfig(
-    config => config.track
-  );
+  const speed = useConfig(config => config.speed);
+  const commitsDistance = useConfig(config => config.commitsDistance);
+  const { width, color, emissiveIntensity } = useConfig(config => config.track);
 
   const [spring, set] = useSpring(() => ({
-    scale: [1, 1, 1],
-    position: [0, 0, -length / 2],
+    // scale: [1, 1, 0],
     rotation: [-Math.PI / 2, 0, 0],
     config: { mass: 10, friction: 20, tension: 150 }
   }));
 
   const handlePointerOver = useCallback(
     e => {
-      set({ scale: [0.95, 1.05, 1] });
+      // set({ scale: [0.95, 1.05, 1] });
     },
     [set]
   );
@@ -35,25 +36,27 @@ const Track = () => {
     [set]
   );
 
-  useEffect(() => {
-    set({ position: [0, 0, -length / 2] });
-  }, [set, length]);
+  useFrame(({ clock }) => {
+    ref.current.scale.y = Math.max(clock.elapsedTime * speed - 1, 0);
+    ref.current.position.z =
+      (clock.elapsedTime * speed * commitsDistance - commitsDistance) / 2;
+    ref.current.rotation.x = -Math.PI / 2;
+  });
 
   return (
-    <a.mesh
+    <mesh
       ref={ref}
-      {...spring}
       onPointerOver={handlePointerOver}
       onPointerMove={handlePointerMove}
       onPointerOut={handlePointerOut}
     >
-      <planeBufferGeometry attach="geometry" args={[width, length]} />
+      <planeBufferGeometry attach="geometry" args={[width, commitsDistance]} />
       <meshLambertMaterial
         attach="material"
         emissive={color}
         emissiveIntensity={emissiveIntensity}
       />
-    </a.mesh>
+    </mesh>
   );
 };
 

@@ -24,7 +24,7 @@ export const [useConfig] = create(set => ({
     position: {
       x: 0,
       y: 25,
-      z: -200
+      z: -150
     },
     near: 0.01,
     far: 1000,
@@ -35,7 +35,7 @@ export const [useConfig] = create(set => ({
     variationDuration: 15
   },
   speed: 0.7,
-  commitsDistance: 150,
+  commitsDistance: 75,
   branchesDistance: 25,
   isOrbitControlsEnabled: false,
   set

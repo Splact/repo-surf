@@ -12,9 +12,9 @@ const Surf = () => {
   return (
     <>
       {commits.map((c, i) => (
-        <Commit key={c.sha} index={i} branchIndex={0} />
+        <Commit key={c.sha} index={i} branchIndex={c.branchIndex} />
       ))}
-      {/* <Track /> */}
+      <Track />
 
       <CameraOperator />
     </>

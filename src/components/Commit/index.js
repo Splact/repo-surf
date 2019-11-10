@@ -1,12 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFrame } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
 
 import { useConfig } from "utils/config";
 
 const Commit = ({ index, branchIndex }) => {
-  const ref = useRef();
-
   const speed = useConfig(config => config.speed);
   const commitsDistance = useConfig(config => config.commitsDistance);
   const branchesDistance = useConfig(config => config.branchesDistance);
@@ -24,7 +22,7 @@ const Commit = ({ index, branchIndex }) => {
 
   useEffect(() => {
     set({
-      position: [-branchIndex * branchesDistance, 0.1, index * commitsDistance]
+      position: [branchIndex * branchesDistance, 0.1, index * commitsDistance]
     });
   }, [set, index, branchIndex, branchesDistance, commitsDistance]);
 
@@ -49,7 +47,7 @@ const Commit = ({ index, branchIndex }) => {
   });
 
   return (
-    <a.mesh ref={ref} {...spring}>
+    <a.mesh {...spring}>
       <circleBufferGeometry attach="geometry" args={[radius, 24]} />
       <meshLambertMaterial
         attach="material"
