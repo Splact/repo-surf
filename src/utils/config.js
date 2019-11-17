@@ -22,7 +22,6 @@ export const [useConfig] = create(set => ({
   },
   camera: {
     position: {
-      x: 0,
       y: 25,
       z: -150
     },
@@ -31,10 +30,10 @@ export const [useConfig] = create(set => ({
     fov: 70,
     xVariation: 10,
     yVariation: 20,
-    zVariation: 0,
     variationDuration: 15
   },
   speed: 0.7,
+  waitOnFirstCommit: 3,
   commitsDistance: 75,
   branchesDistance: 25,
   isOrbitControlsEnabled: false,
@@ -55,6 +54,13 @@ export const DatGui = () => {
         step={0.1}
       />
       <DatNumber
+        path="waitOnFirstCommit"
+        label="Wait on 1st commit (s)"
+        min={0}
+        max={10}
+        step={0.1}
+      />
+      <DatNumber
         path="commitsDistance"
         label="Commits distance"
         min={5}
@@ -71,13 +77,6 @@ export const DatGui = () => {
       <DatBoolean path="isOrbitControlsEnabled" label="Orbit Controls" />
 
       <DatFolder title="Camera">
-        <DatNumber
-          path="camera.position.x"
-          label="Position (x)"
-          min={0}
-          max={1000}
-          step={1}
-        />
         <DatNumber
           path="camera.position.y"
           label="Position (y)"
@@ -104,13 +103,6 @@ export const DatGui = () => {
           label="Variation (y)"
           min={0}
           max={25}
-          step={1}
-        />
-        <DatNumber
-          path="camera.zVariation"
-          label="Variation (z)"
-          min={0}
-          max={150}
           step={1}
         />
         <DatNumber

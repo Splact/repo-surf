@@ -5,12 +5,11 @@ import { useSpring, a } from "react-spring/three";
 import { useConfig } from "utils/config";
 
 const Commit = ({ index, branchIndex }) => {
-  const speed = useConfig(config => config.speed);
-  const commitsDistance = useConfig(config => config.commitsDistance);
-  const branchesDistance = useConfig(config => config.branchesDistance);
-  const { radius, color, emissiveIntensity } = useConfig(
-    config => config.commit
-  );
+  const speed = useConfig(c => c.speed);
+  const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
+  const commitsDistance = useConfig(c => c.commitsDistance);
+  const branchesDistance = useConfig(c => c.branchesDistance);
+  const { radius, color, emissiveIntensity } = useConfig(c => c.commit);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -38,17 +37,20 @@ const Commit = ({ index, branchIndex }) => {
 
   useFrame(({ clock }) => {
     if (!isActive) {
-      if (clock.elapsedTime * speed > index + 1) {
+      if (
+        // first commit show on start
+        (!index && clock.elapsedTime * speed > index + 1) ||
+        // for all the other commits {waitOnFirstCommit}s delay
+        (clock.elapsedTime - waitOnFirstCommit) * speed > index + 1
+      ) {
         setIsActive(true);
       }
-    } else if (clock.elapsedTime * speed < index + 1) {
-      setIsActive(true);
     }
   });
 
   return (
     <a.mesh {...spring}>
-      <circleBufferGeometry attach="geometry" args={[radius, 24]} />
+      <circleBufferGeometry attach="geometry" args={[radius, 32]} />
       <meshLambertMaterial
         attach="material"
         emissive={color}

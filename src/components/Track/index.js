@@ -1,20 +1,33 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "react-three-fiber";
 
 import { useConfig } from "utils/config";
 
 const Track = () => {
   const ref = useRef();
+  const [isActive, setIsActive] = useState(false);
 
-  const speed = useConfig(config => config.speed);
-  const commitsDistance = useConfig(config => config.commitsDistance);
-  const { width, color, emissiveIntensity } = useConfig(config => config.track);
+  const speed = useConfig(c => c.speed);
+  const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
+  const commitsDistance = useConfig(c => c.commitsDistance);
+  const { width, color, emissiveIntensity } = useConfig(c => c.track);
+
+  useEffect(() => {
+    ref.current.rotation.x = -Math.PI / 2;
+  }, []);
 
   useFrame(({ clock }) => {
-    ref.current.scale.y = Math.max(clock.elapsedTime * speed - 1, 0.000001);
-    ref.current.position.z =
-      (clock.elapsedTime * speed * commitsDistance - commitsDistance) / 2;
-    ref.current.rotation.x = -Math.PI / 2;
+    // update scale
+    ref.current.scale.y = Math.max(
+      (clock.elapsedTime - waitOnFirstCommit) * speed - 1,
+      0.01
+    );
+    // realign to 0
+    ref.current.position.z = (ref.current.scale.y * commitsDistance) / 2;
+
+    if (!isActive && ref.current.scale.y > 0.01) {
+      setIsActive(true);
+    }
   });
 
   return (
@@ -24,6 +37,8 @@ const Track = () => {
         attach="material"
         emissive={color}
         emissiveIntensity={emissiveIntensity}
+        transparent
+        opacity={isActive > 0.01 ? 1 : 0}
       />
     </mesh>
   );
