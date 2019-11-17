@@ -33,7 +33,7 @@ export const [useConfig] = create(set => ({
     variationDuration: 15
   },
   speed: 0.7,
-  waitOnFirstCommit: 3,
+  waitOnFirstCommit: 1.5,
   commitsDistance: 75,
   branchesDistance: 25,
   isOrbitControlsEnabled: false,
