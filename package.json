@@ -15,6 +15,7 @@
     "react-three-fiber": "^3.0.8",
     "stats.js": "^0.17.0",
     "three": "^0.110.0",
+    "three.meshline": "^1.2.0",
     "zustand": "^2.2.1"
   },
   "scripts": {

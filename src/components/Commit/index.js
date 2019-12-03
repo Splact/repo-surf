@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { useFrame } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
 
 import { useConfig } from "utils/config";
 
-const Commit = ({ index, branchIndex }) => {
+const Commit = forwardRef(({ index, position }, ref) => {
   const speed = useConfig(c => c.speed);
   const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
-  const commitsDistance = useConfig(c => c.commitsDistance);
-  const branchesDistance = useConfig(c => c.branchesDistance);
   const { radius, color, emissiveIntensity } = useConfig(c => c.commit);
 
   const [isActive, setIsActive] = useState(false);
@@ -20,10 +18,8 @@ const Commit = ({ index, branchIndex }) => {
   }));
 
   useEffect(() => {
-    set({
-      position: [branchIndex * branchesDistance, 0.1, index * commitsDistance]
-    });
-  }, [set, index, branchIndex, branchesDistance, commitsDistance]);
+    set({ position: [position.x, position.y + 0.1, position.z] });
+  }, [set, position]);
 
   useEffect(() => {
     if (isActive) {
@@ -49,7 +45,7 @@ const Commit = ({ index, branchIndex }) => {
   });
 
   return (
-    <a.mesh {...spring}>
+    <a.mesh {...spring} ref={ref}>
       <circleBufferGeometry attach="geometry" args={[radius, 32]} />
       <meshLambertMaterial
         attach="material"
@@ -60,6 +56,6 @@ const Commit = ({ index, branchIndex }) => {
       />
     </a.mesh>
   );
-};
+});
 
 export default Commit;

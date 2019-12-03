@@ -1,8 +1,7 @@
 import React from "react";
 
 import CameraOperator from "components/CameraOperator";
-import Commit from "components/Commit";
-import Track from "components/Track";
+import Branch from "components/Branch";
 import useRepo from "hooks/useRepo";
 
 const Surf = () => {
@@ -11,14 +10,7 @@ const Surf = () => {
 
   return (
     <>
-      {commits.map((c, i) => (
-        <Commit
-          key={c.sha}
-          index={commits.length - i - 1}
-          branchIndex={c.branchIndex}
-        />
-      ))}
-      <Track />
+      {commits.length && <Branch commits={commits} />}
 
       <CameraOperator />
     </>

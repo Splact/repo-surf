@@ -11,7 +11,7 @@ import { DatGui } from "utils/config";
 import "./style.scss";
 
 const cameraSettings = {
-  near: 0.01,
+  near: 0.001,
   far: 1000,
   fov: 70
 };
@@ -30,7 +30,7 @@ const App = () => (
       pixelRatio={window.devicePixelRatio}
       updateDefaultCamera
     >
-      <fog attach="fog" args={[backgroundColor, 100, 200]} />
+      <fog attach="fog" args={[backgroundColor, 50, 250]} />
       <ambientLight intensity={0.25} />
 
       <Surf />
