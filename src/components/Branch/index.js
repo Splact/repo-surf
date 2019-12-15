@@ -1,14 +1,14 @@
 import React, { useRef, useMemo } from "react";
 import { useFrame, extend, useThree } from "react-three-fiber";
-import { Vector3, BackSide } from "three";
-import { MeshLine, MeshLineMaterial } from "three.meshline";
+import { Vector3, FrontSide } from "three";
+import { MeshLine } from "three.meshline";
 
 import Commit from "components/Commit";
 import { useConfig } from "utils/config";
 
 import BranchMaterial from "./BranchMaterial";
 
-extend({ MeshLine, MeshLineMaterial, BranchMaterial });
+extend({ MeshLine, BranchMaterial });
 
 const Branch = ({ commits }) => {
   const material = useRef();
@@ -34,7 +34,7 @@ const Branch = ({ commits }) => {
   );
 
   useFrame(({ clock }) => {
-    // update scale
+    // update dash offset
     material.current.uniforms.dashOffset.value = Math.min(
       Math.max(
         ((clock.elapsedTime - waitOnFirstCommit) * speed - 0.66) /
@@ -51,7 +51,7 @@ const Branch = ({ commits }) => {
 
   return (
     <>
-      <mesh>
+      <mesh renderOrder={1}>
         {/* MeshLine and CMRCurve are a OOP factories, not scene objects */}
         <meshLine onUpdate={self => (self.parent.geometry = self.geometry)}>
           <geometry onUpdate={self => self.parent.setGeometry(self)}>
@@ -69,6 +69,7 @@ const Branch = ({ commits }) => {
           ref={material}
           lineWidth={width}
           color={color}
+          emissive={color}
           depthTest={false}
           transparent
           near={camera.near}
@@ -76,7 +77,7 @@ const Branch = ({ commits }) => {
           fog
           dashArray={2}
           dashRatio={0.5}
-          side={BackSide}
+          side={FrontSide}
         />
       </mesh>
 
@@ -85,6 +86,7 @@ const Branch = ({ commits }) => {
           key={c.sha}
           position={c.position}
           index={commits.length - i - 1}
+          renderOrder={2}
         />
       ))}
     </>

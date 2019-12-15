@@ -4,7 +4,7 @@ import { useSpring, a } from "react-spring/three";
 
 import { useConfig } from "utils/config";
 
-const Commit = forwardRef(({ index, position }, ref) => {
+const Commit = forwardRef(({ index, position, renderOrder = 0 }, ref) => {
   const speed = useConfig(c => c.speed);
   const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
   const { radius, color, emissiveIntensity } = useConfig(c => c.commit);
@@ -13,12 +13,12 @@ const Commit = forwardRef(({ index, position }, ref) => {
 
   const [spring, set] = useSpring(() => ({
     scale: [0.01, 0.01, 0.01],
-    position: [0, 0.1, 0],
+    position: [0, 0, 0],
     rotation: [-Math.PI / 2, 0, 0]
   }));
 
   useEffect(() => {
-    set({ position: [position.x, position.y + 0.1, position.z] });
+    set({ position: [position.x, position.y, position.z] });
   }, [set, position]);
 
   useEffect(() => {
@@ -45,12 +45,13 @@ const Commit = forwardRef(({ index, position }, ref) => {
   });
 
   return (
-    <a.mesh {...spring} ref={ref}>
+    <a.mesh {...spring} ref={ref} renderOrder={renderOrder}>
       <circleBufferGeometry attach="geometry" args={[radius, 32]} />
       <meshLambertMaterial
         attach="material"
         emissive={color}
         emissiveIntensity={emissiveIntensity}
+        depthTest={false}
         transparent
         opacity={isActive ? 1 : 0}
       />

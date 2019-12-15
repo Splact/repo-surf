@@ -16,7 +16,6 @@ export const [useConfig] = create(set => ({
   },
   track: {
     width: 6,
-    length: 32,
     color: "#8ACB67",
     emissiveIntensity: 1
   },
@@ -138,13 +137,6 @@ export const DatGui = () => {
           label="Width"
           min={1}
           max={50}
-          step={0.1}
-        />
-        <DatNumber
-          path="track.length"
-          label="Length"
-          min={1}
-          max={72}
           step={0.1}
         />
         <DatColor path="track.color" label="Color" />
