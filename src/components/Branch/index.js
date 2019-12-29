@@ -10,44 +10,60 @@ import BranchMaterial from "./BranchMaterial";
 
 extend({ MeshLine, BranchMaterial });
 
-const Branch = ({ commits }) => {
+const Branch = ({ color, commits }) => {
   const material = useRef();
 
   const speed = useConfig(c => c.speed);
-  const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
   const commitsDistance = useConfig(c => c.commitsDistance);
-  const branchesDistance = useConfig(c => c.branchesDistance);
-  const { width, color } = useConfig(c => c.track);
+  const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
+  const { width, color: defaultColor } = useConfig(c => c.track);
   const { camera } = useThree();
 
-  const preparedCommits = useMemo(
-    () =>
-      commits.map((c, i) => ({
-        ...c,
-        position: new Vector3(
-          c.branchIndex * branchesDistance,
-          0,
-          (commits.length - i - 1) * commitsDistance
-        )
-      })),
-    [commits, branchesDistance, commitsDistance]
-  );
+  const vertices = useMemo(() => {
+    const vv = [];
+    let lastIndex = commits[0].index - 1;
+
+    commits.forEach((c, ci) => {
+      const deltaIndex = lastIndex - c.index;
+
+      if (deltaIndex > 1) {
+        // if the gap is bigger then 1
+        for (let i = deltaIndex - 1; i > 0; i--) {
+          // add missing points
+          vv.push(
+            new Vector3(
+              c.position.x,
+              c.position.y,
+              c.position.z + commitsDistance * i
+            )
+          );
+        }
+      }
+
+      vv.push(c.position);
+
+      lastIndex = c.index;
+    });
+
+    return vv;
+  }, [commits, commitsDistance]);
+
+  // commit are in reverse order
+  const minIndex = commits[commits.length - 1].index;
 
   useFrame(({ clock }) => {
+    const waitToBranch = minIndex / speed;
     // update dash offset
     material.current.uniforms.dashOffset.value = Math.min(
       Math.max(
-        ((clock.elapsedTime - waitOnFirstCommit) * speed - 0.66) /
-          preparedCommits.length,
+        ((clock.elapsedTime - waitOnFirstCommit - waitToBranch) * speed -
+          0.66) /
+          vertices.length,
         0
       ),
       1
     );
   });
-
-  const vertices = useMemo(() => preparedCommits.map(c => c.position), [
-    preparedCommits
-  ]);
 
   return (
     <>
@@ -68,8 +84,8 @@ const Branch = ({ commits }) => {
           attach="material"
           ref={material}
           lineWidth={width}
-          color={color}
-          emissive={color}
+          color={color || defaultColor}
+          emissive={color || defaultColor}
           depthTest={false}
           transparent
           near={camera.near}
@@ -81,11 +97,12 @@ const Branch = ({ commits }) => {
         />
       </mesh>
 
-      {preparedCommits.map((c, i) => (
+      {commits.map((c, i) => (
         <Commit
-          key={c.sha}
+          key={`commit--${c.sha}`}
           position={c.position}
-          index={commits.length - i - 1}
+          color={color}
+          index={c.index}
           renderOrder={2}
         />
       ))}
