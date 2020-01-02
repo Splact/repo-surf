@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { Vector3 } from "three";
 
 import { fetchCommits } from "api";
-import { useConfig } from "utils/config";
 
 const getRepoParamsFromPath = () => {
   const parts = window.location.pathname.replace(/^\/+|\/+$/g, "").split("/");
@@ -29,20 +27,15 @@ export default () => {
     return false;
   }
 
-  const commitsDistance = useConfig(c => c.commitsDistance);
-  const branchesDistance = useConfig(c => c.branchesDistance);
-
   useEffect(() => {
     async function fetch() {
       try {
         let cc = await fetchCommits(owner, repo);
-        const branches = [];
 
         if (cc.length) {
           cc = cc.map((c, i) => ({
             sha: c.sha,
             index: cc.length - i - 1,
-            branchIndex: 0,
             commit: {
               authorDate: c.commit.author.date,
               date: c.commit.committer.date,
@@ -68,29 +61,6 @@ export default () => {
             },
             parents: c.parents.map(p => p.sha)
           }));
-
-          branches.push([cc[0].sha]);
-
-          cc.forEach(c => {
-            const branchIndex = branches.findIndex(
-              b => !!b.find(sha => sha === c.sha)
-            );
-
-            c.branchIndex = branchIndex;
-
-            c.parents.forEach((p, pi) => {
-              if (branches.length < branchIndex + pi + 1) {
-                branches[branchIndex + pi] = [];
-              }
-              branches[branchIndex + pi].push(p);
-            });
-
-            c.position = new Vector3(
-              c.branchIndex * branchesDistance,
-              0,
-              c.index * commitsDistance
-            );
-          });
         }
 
         setState(state => ({ ...state, commits: cc, isLoading: false }));
@@ -102,7 +72,7 @@ export default () => {
     if (owner !== "" && repo !== "") {
       fetch();
     }
-  }, [branchesDistance, commitsDistance, owner, repo]);
+  }, [owner, repo]);
 
   return { owner, repo, ...state };
 };

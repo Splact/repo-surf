@@ -10,7 +10,7 @@ import BranchMaterial from "./BranchMaterial";
 
 extend({ MeshLine, BranchMaterial });
 
-const Branch = ({ color, commits }) => {
+const Branch = ({ name, index, color, commits }) => {
   const material = useRef();
 
   const speed = useConfig(c => c.speed);
@@ -18,6 +18,8 @@ const Branch = ({ color, commits }) => {
   const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
   const { width, color: defaultColor } = useConfig(c => c.track);
   const { camera } = useThree();
+
+  // console.log(`Render branch "${name}"`);
 
   const vertices = useMemo(() => {
     const vv = [];
@@ -97,15 +99,22 @@ const Branch = ({ color, commits }) => {
         />
       </mesh>
 
-      {commits.map((c, i) => (
-        <Commit
-          key={`commit--${c.sha}`}
-          position={c.position}
-          color={color}
-          index={c.index}
-          renderOrder={2}
-        />
-      ))}
+      {commits.map((c, i) => {
+        if (index && (!i || i === commits.length - 1)) {
+          // do not render fork and merge commits (they have already been rendered their brnach)
+          return null;
+        }
+
+        return (
+          <Commit
+            key={`commit--${c.sha}`}
+            position={c.position}
+            color={color}
+            index={c.index}
+            renderOrder={2}
+          />
+        );
+      })}
     </>
   );
 };

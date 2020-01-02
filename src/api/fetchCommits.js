@@ -1,12 +1,20 @@
 import delay from "utils/delay";
-import reactCommits from "data/facebook.react.master.json";
 
 // temp solution
-export default async () => {
+export default async (owner, repo) => {
   // const commits = await fetch(
-  //   `https://api.github.com/repos/facebook/react/commits?per_page=100`
+  //   `https://api.github.com/repos/${owner}/${repo}/commits?per_page=100`
   // );
 
   await delay(1000 * Math.random());
-  return reactCommits;
+
+  let commits = [];
+
+  if (owner === "facebook" && repo === "react") {
+    commits = require("data/facebook.react.master.json");
+  } else {
+    commits = require("data/mrdoob.three.js.master.json");
+  }
+
+  return commits;
 };

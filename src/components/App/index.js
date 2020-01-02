@@ -36,11 +36,11 @@ const App = () => (
       <Surf />
 
       <Effects />
-      <Stats />
+      {/* <Stats /> */}
       <OrbitControls />
     </Canvas>
 
-    <DatGui />
+    {/* <DatGui /> */}
   </>
 );
 
