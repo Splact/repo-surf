@@ -10,7 +10,14 @@ import BranchMaterial from "./BranchMaterial";
 
 extend({ MeshLine, BranchMaterial });
 
-const Branch = ({ name, index, color, commits }) => {
+const Branch = ({
+  name,
+  index,
+  color,
+  commits,
+  skipLastCommit,
+  skipFirstCommit
+}) => {
   const material = useRef();
 
   const speed = useConfig(c => c.speed);
@@ -100,7 +107,10 @@ const Branch = ({ name, index, color, commits }) => {
       </mesh>
 
       {commits.map((c, i) => {
-        if (index && (!i || i === commits.length - 1)) {
+        if (
+          (!i && skipLastCommit) ||
+          (i === commits.length - 1 && skipFirstCommit)
+        ) {
           // do not render fork and merge commits (they have already been rendered their brnach)
           return null;
         }

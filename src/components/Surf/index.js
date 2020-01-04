@@ -79,6 +79,8 @@ const Surf = () => {
       name: null,
       color: null,
       commits: [],
+      skipFirstCommit: false,
+      skipLastCommit: false,
       index: null,
       position: null,
       range: [Infinity, 0]
@@ -96,6 +98,11 @@ const Surf = () => {
       // that's the head/merge-commit
       currentBranch.commits.push(head);
 
+      // if this is not the first branch
+      if (branches.length) {
+        currentBranch.skipLastCommit = true;
+      }
+
       // update range
       if (currentBranch.range[0] > head.index) {
         currentBranch.range[0] = head.index;
@@ -108,6 +115,7 @@ const Surf = () => {
 
       if (!commit) {
         // commit was not found
+        currentBranch.commits = [];
         continue;
       }
 
@@ -148,6 +156,8 @@ const Surf = () => {
       // Add fork commit if needed
       if (commit) {
         currentBranch.commits.push(commit);
+
+        currentBranch.skipFirstCommit = true;
 
         // update range
         if (currentBranch.range[0] > commit.index) {
@@ -212,6 +222,8 @@ const Surf = () => {
         name: null,
         color: null,
         commits: [],
+        skipFirstCommit: false,
+        skipLastCommit: false,
         index: null,
         position: null,
         range: [Infinity, 0]
@@ -232,6 +244,8 @@ const Surf = () => {
           index={b.index}
           color={b.color}
           commits={b.commits}
+          skipFirstCommit={b.skipFirstCommit}
+          skipLastCommit={b.skipLastCommit}
         />
       ))}
 
