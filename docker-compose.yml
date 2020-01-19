@@ -1,0 +1,25 @@
+version: "3.0"
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - wwwroot:/wwwroot
+      - ./etc/nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=repo.surf
+      - VIRTUAL_NETWORK=beaver-sites
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=repo.surf
+      - LETSENCRYPT_EMAIL=dario.kar@gmail.com
+    restart: always
+  web:
+    build: .
+    volumes:
+      - wwwroot:/code/build
+    restart: always
+volumes:
+  wwwroot:
+networks:
+  default:
+    external:
+      name: beaver-sites
