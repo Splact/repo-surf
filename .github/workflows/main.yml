@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+    - production
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build docker-compose
+      run: docker-compose build
+
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+    - name: Stop previous running containers (if any)
+      run: docker-compose stop
+    - name: Running containers
+      run: docker-compose up -d
