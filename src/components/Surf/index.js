@@ -7,13 +7,6 @@ import useRepo from "hooks/useRepo";
 import { useConfig } from "utils/config";
 import getBranchColor from "utils/getBranchColor";
 
-const sortBranches = (ba, bb) => {
-  const oldestACommit = ba.commits[ba.commits.length - 1].index;
-  const oldestBCommit = bb.commits[bb.commits.length - 1].index;
-
-  return oldestACommit > oldestBCommit ? 1 : -1;
-};
-
 const branchIndex2Position = index => {
   let position = Math.ceil(index / 2);
   if (index % 2 === 0) {

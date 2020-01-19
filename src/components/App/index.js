@@ -5,8 +5,8 @@ import * as THREE from "three";
 import Surf from "components/Surf";
 import Effects from "components/Effects";
 import OrbitControls from "components/OrbitControls";
-import Stats from "components/Stats";
-import { DatGui } from "utils/config";
+// import Stats from "components/Stats";
+// import { DatGui } from "utils/config";
 
 import "./style.scss";
 
