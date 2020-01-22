@@ -2,12 +2,12 @@ import React from "react";
 import { Canvas } from "react-three-fiber";
 import * as THREE from "three";
 
-import Surf from "components/Surf";
-import Effects from "components/Effects";
-import OrbitControls from "components/OrbitControls";
-import Stats from "components/Stats";
 import BlinkingBadge from "components/BlinkingBadge";
+import Effects from "components/Effects";
+import Stats from "components/Stats";
+import Surf from "components/Surf";
 import { DatGui } from "utils/config";
+import { isDevelopment } from "utils/isEnvironment";
 
 import "./style.scss";
 
@@ -37,11 +37,11 @@ const App = () => (
       <Surf />
 
       <Effects />
-      <Stats />
-      <OrbitControls />
+
+      {isDevelopment && <Stats />}
     </Canvas>
 
-    <DatGui />
+    {isDevelopment && <DatGui />}
 
     <BlinkingBadge>Preview</BlinkingBadge>
   </>
