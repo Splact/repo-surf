@@ -24,7 +24,7 @@ export default () => {
     error: null
   });
 
-  const { owner = "facebook", repo = "react" } = getRepoParamsFromPath();
+  const { owner = "splact", repo = "morbido" } = getRepoParamsFromPath();
 
   if (!repo) {
     return { owner, repo, commits: [], isLoading: false, error: true };
@@ -34,11 +34,6 @@ export default () => {
     async function fetch() {
       try {
         let commits = await fetchCommits(owner, repo);
-
-        // TEMP: limit to a small preview
-        if (commits.length > 128) {
-          commits = commits.slice(commits.length - 128);
-        }
 
         setState(state => ({ ...state, commits, isLoading: false }));
       } catch (error) {
