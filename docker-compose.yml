@@ -16,7 +16,6 @@ services:
     build: .
     volumes:
       - wwwroot:/code/build
-    restart: always
 volumes:
   wwwroot:
 networks:
