@@ -5,7 +5,10 @@ import { fetchCommits } from "api";
 const getRepoParamsFromPath = () => {
   const parts = window.location.pathname.replace(/^\/+|\/+$/g, "").split("/");
   if (parts.length < 2) {
-    return false;
+    return {
+      owner: null,
+      repo: null
+    };
   }
 
   return {
@@ -24,7 +27,7 @@ export default () => {
   const { owner, repo } = getRepoParamsFromPath();
 
   if (!repo) {
-    return false;
+    return { owner, repo, commits: [], isLoading: false, error: true };
   }
 
   useEffect(() => {
