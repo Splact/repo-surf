@@ -6,8 +6,8 @@ const getRepoParamsFromPath = () => {
   const parts = window.location.pathname.replace(/^\/+|\/+$/g, "").split("/");
   if (parts.length < 2) {
     return {
-      owner: null,
-      repo: null
+      owner: undefined,
+      repo: undefined
     };
   }
 
@@ -24,7 +24,7 @@ export default () => {
     error: null
   });
 
-  const { owner, repo } = getRepoParamsFromPath();
+  const { owner = "facebook", repo = "react" } = getRepoParamsFromPath();
 
   if (!repo) {
     return { owner, repo, commits: [], isLoading: false, error: true };
@@ -33,9 +33,14 @@ export default () => {
   useEffect(() => {
     async function fetch() {
       try {
-        let cc = await fetchCommits(owner, repo);
+        let commits = await fetchCommits(owner, repo);
 
-        setState(state => ({ ...state, commits: cc, isLoading: false }));
+        // TEMP: limit to a small preview
+        if (commits.length > 128) {
+          commits = commits.slice(commits.length - 128);
+        }
+
+        setState(state => ({ ...state, commits, isLoading: false }));
       } catch (error) {
         setState(state => ({ ...state, isLoading: false, error }));
       }

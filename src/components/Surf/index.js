@@ -57,12 +57,9 @@ const getAvailableIndex = (currentBranch, branches) => {
 };
 
 const Surf = () => {
-  const { owner, repo, commits: allCommits, isLoading, error } = useRepo();
+  const { owner, repo, commits, isLoading, error } = useRepo();
   const commitsDistance = useConfig(c => c.commitsDistance);
   const branchesDistance = useConfig(c => c.branchesDistance);
-
-  // TEMP: limit to a small preview
-  const commits = allCommits.slice(0, 255);
 
   console.log("Surf render", { owner, repo, commits, isLoading, error });
 
