@@ -1,14 +1,14 @@
 import React, { useRef, useMemo } from "react";
 import { useFrame, extend, useThree } from "react-three-fiber";
 import { Vector3, FrontSide } from "three";
-import { MeshLine } from "three.meshline";
 
 import Commit from "components/Commit";
 import { useConfig } from "utils/config";
 
+import BranchGeometry from "./BranchGeometry";
 import BranchMaterial from "./BranchMaterial";
 
-extend({ MeshLine, BranchMaterial });
+extend({ BranchGeometry, BranchMaterial });
 
 const Branch = ({
   name,
@@ -78,7 +78,9 @@ const Branch = ({
     <>
       <mesh renderOrder={1}>
         {/* MeshLine and CMRCurve are a OOP factories, not scene objects */}
-        <meshLine onUpdate={self => (self.parent.geometry = self.geometry)}>
+        <branchGeometry
+          onUpdate={self => (self.parent.geometry = self.geometry)}
+        >
           <geometry onUpdate={self => self.parent.setGeometry(self)}>
             <catmullRomCurve3
               args={[vertices]}
@@ -87,7 +89,7 @@ const Branch = ({
               }
             />
           </geometry>
-        </meshLine>
+        </branchGeometry>
 
         <branchMaterial
           attach="material"
@@ -118,6 +120,8 @@ const Branch = ({
         return (
           <Commit
             key={`commit--${c.sha}`}
+            sha={c.sha}
+            message={c.commit.message}
             position={c.position}
             color={color}
             index={c.index}

@@ -4,9 +4,9 @@
   margin: 2rem;
 
   color: $c--oxford-blue;
-  font-family: monospace;
   font-size: 1.4rem;
-  text-transform: uppercase;
+  text-transform: lowercase;
+  letter-spacing: 0.2em;
 
   animation: blink infinite 2s forwards cubic-bezier(0.445, 0.05, 0.55, 0.95);
 

@@ -1,53 +1,62 @@
-import React, { forwardRef, useEffect, useState } from "react";
-import { useFrame } from "react-three-fiber";
+import React, { forwardRef, useEffect, useContext } from "react";
 import { useSpring, a } from "react-spring/three";
 
+import FlatText from "components/FlatText";
+import { SurfContext } from "components/Surf";
 import { useConfig } from "utils/config";
 
-const Commit = forwardRef(
-  ({ index, position, color, renderOrder = 0 }, ref) => {
-    const speed = useConfig(c => c.speed);
-    const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
-    const { radius, color: defaultColor, emissiveIntensity } = useConfig(
-      c => c.commit
-    );
+const Commit = forwardRef((props, ref) => {
+  const { index, position, color, renderOrder = 0, sha, message } = props;
+  const { radius, color: defaultColor, emissiveIntensity } = useConfig(
+    c => c.commit
+  );
 
-    const [isActive, setIsActive] = useState(false);
+  const { currentCommit } = useContext(SurfContext);
+  const isActive = index < currentCommit + 1;
+  const isCurrent = index > currentCommit - 2 && index <= currentCommit;
 
-    const [spring, set] = useSpring(() => ({
-      scale: [0.01, 0.01, 0.01],
-      position: [0, 0, 0],
-      rotation: [-Math.PI / 2, 0, 0]
-    }));
+  const [spring, set] = useSpring(() => ({
+    scale: [0.01, 0.01, 0.01],
+    position: [0, 0, 0],
+    rotation: [0, 0, 0]
+  }));
 
-    useEffect(() => {
-      set({ position: [position.x, position.y, position.z] });
-    }, [set, position]);
+  useEffect(() => {
+    if (isActive) {
+      // open it
+      set({ scale: [1, 1, 1] });
+    } else {
+      // close it
+      set({ scale: [0.01, 0.01, 0.01] });
+    }
+  }, [isActive, set]);
 
-    useEffect(() => {
-      if (isActive) {
-        // open it
-        set({ scale: [1, 1, 1] });
-      } else {
-        // close it
-        set({ scale: [0.01, 0.01, 0.01] });
-      }
-    }, [isActive, set]);
+  useEffect(() => {
+    if (isCurrent) {
+      // open it
+      set({ scale: [1.2, 1.2, 1.2], position: [0, 1, 0] });
+    } else {
+      // close it
+      set({ scale: [1, 1, 1], position: [0, 0, 0] });
+    }
+  }, [isCurrent, set]);
 
-    useFrame(({ clock }) => {
-      if (!isActive) {
-        if (
-          // first commit show on start
-          (!index && clock.elapsedTime * speed > index + 1) ||
-          // for all the other commits {waitOnFirstCommit}s delay
-          (clock.elapsedTime - waitOnFirstCommit) * speed > index + 1
-        ) {
-          setIsActive(true);
-        }
-      }
-    });
+  return (
+    <group
+      position={[position.x, position.y, position.z]}
+      rotation={[-Math.PI / 2, 0, 0]}
+    >
+      <FlatText
+        active={isCurrent}
+        position={[-radius, 0, 5]}
+        rotation={[-Math.PI / 2, Math.PI, 0]}
+        renderOrder={renderOrder + 1}
+      >
+        {sha.substr(0, 7)}
+        {""}
+        {message}
+      </FlatText>
 
-    return (
       <a.mesh {...spring} ref={ref} renderOrder={renderOrder}>
         <circleBufferGeometry attach="geometry" args={[radius, 32]} />
         <meshLambertMaterial
@@ -59,8 +68,8 @@ const Commit = forwardRef(
           opacity={isActive ? 1 : 0}
         />
       </a.mesh>
-    );
-  }
-);
+    </group>
+  );
+});
 
 export default Commit;
