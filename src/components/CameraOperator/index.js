@@ -6,7 +6,7 @@ import { useConfig } from "utils/config";
 
 const DAMPING_DURATION = 30;
 
-const CameraOperator = () => {
+const CameraOperator = ({ commitsCount }) => {
   const lookPosition = useRef(new Vector3(0, 0.1, 0));
   const dampingSpeed = useRef(0);
   const { camera } = useThree();
@@ -49,6 +49,7 @@ const CameraOperator = () => {
     if (clock.elapsedTime > timeToMove) {
       headZ = (clock.elapsedTime - timeToMove) * speed * commitsDistance;
     }
+    headZ = Math.min(headZ, (commitsCount - 1) * commitsDistance);
 
     // update damping speed
     dampingSpeed.current = Math.max(

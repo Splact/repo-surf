@@ -5,6 +5,7 @@
   "dependencies": {
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
+    "load-bmfont": "^1.4.0",
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
     "react": "^16.11.0",
@@ -14,8 +15,8 @@
     "react-spring": "^8.0.27",
     "react-three-fiber": "^3.0.8",
     "stats.js": "^0.17.0",
-    "three": "^0.110.0",
-    "three.meshline": "^1.2.0",
+    "three": "^0.112.0",
+    "three-bmfont-text": "^2.3.0",
     "zustand": "^2.2.1"
   },
   "scripts": {
