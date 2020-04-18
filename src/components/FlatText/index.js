@@ -6,8 +6,8 @@ import createTextGeometry from "three-bmfont-text";
 
 import loadFont from "./loadFont";
 
-import sourceCodeProFont from "assets/fonts/source-code-pro/bold.fnt";
-import sourceCodeProImage from "assets/fonts/source-code-pro/bold.png";
+import ptMonoFont from "assets/fonts/pt-mono/ptm55ft.fnt";
+import ptMonoImage from "assets/fonts/pt-mono/ptm55ft.png";
 
 const DEFAULT_ATLAS = new Texture();
 const DEFAULT_COLOR = "#FFFFFF";
@@ -37,15 +37,15 @@ const FlatText = props => {
 
   useEffect(() => {
     loadFont({
-      font: sourceCodeProFont,
-      image: sourceCodeProImage
+      font: ptMonoFont,
+      image: ptMonoImage
     })
       .then(({ definition, atlas }) => {
         // create text geometry
         const geometry = createTextGeometry({
           text,
           font: definition, // the bitmap font definition
-          width: 640, // width for word-wrap
+          width: 960, // width for word-wrap
           lineHeight: 48
         });
 
