@@ -81,12 +81,6 @@ const CameraOperator = ({ commitsCount }) => {
     camera.position.y += (newY - camera.position.y) * dampingSpeed.current;
     camera.position.z += (newZ - camera.position.z) * dampingSpeed.current;
 
-    console.log(headZ, {
-      dampingSpeed: dampingSpeed.current,
-      cameraZ,
-      newZ
-    });
-
     // update look position
     lookPosition.current.z +=
       (headZ - lookPosition.current.z) * dampingSpeed.current;
