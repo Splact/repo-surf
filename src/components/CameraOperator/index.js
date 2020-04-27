@@ -42,30 +42,50 @@ const CameraOperator = ({ commitsCount }) => {
 
     // angle used for position variation
     const alpha = (clock.elapsedTime / variationDuration) * Math.PI * 2;
-    // angle used for roll variation
-    const beta = (clock.elapsedTime / (2 * variationDuration)) * Math.PI * 2;
 
     let headZ = 0;
+    let cameraZ = 0;
     if (clock.elapsedTime > timeToMove) {
       headZ = (clock.elapsedTime - timeToMove) * speed * commitsDistance;
+      cameraZ = Math.min(headZ, (commitsCount - 1) * commitsDistance - z);
+    } else {
+      cameraZ = Math.min(headZ, (commitsCount - 1) * commitsDistance);
     }
     headZ = Math.min(headZ, (commitsCount - 1) * commitsDistance);
 
     // update damping speed
-    dampingSpeed.current = Math.max(
-      0.001,
-      Math.min((clock.elapsedTime - timeToMove) / DAMPING_DURATION, 1)
-    );
+    if (headZ < (commitsCount - 3) * commitsDistance) {
+      dampingSpeed.current = Math.max(
+        0.001,
+        Math.min((clock.elapsedTime - timeToMove) / DAMPING_DURATION, 1)
+      );
+    } else {
+      dampingSpeed.current = Math.max(
+        0.005,
+        Math.min(
+          1 -
+            (cameraZ - (commitsCount - 3) * commitsDistance) /
+              (commitsDistance * 4),
+          1
+        )
+      );
+    }
 
     // calc new position
     const newX = xVariation * Math.cos(alpha);
     const newY = y + yVariation * Math.sin(alpha);
-    const newZ = z + headZ;
+    const newZ = z + cameraZ;
 
     // apply damping and set position
     camera.position.x += (newX - camera.position.x) * dampingSpeed.current;
     camera.position.y += (newY - camera.position.y) * dampingSpeed.current;
     camera.position.z += (newZ - camera.position.z) * dampingSpeed.current;
+
+    console.log(headZ, {
+      dampingSpeed: dampingSpeed.current,
+      cameraZ,
+      newZ
+    });
 
     // update look position
     lookPosition.current.z +=
@@ -73,7 +93,7 @@ const CameraOperator = ({ commitsCount }) => {
     camera.lookAt(lookPosition.current);
 
     // apply continuous roll
-    camera.rotation.z = Math.PI - 0.0625 * Math.PI * Math.sin(beta);
+    camera.rotation.z = Math.PI - 0.0625 * Math.PI * Math.cos(alpha);
   });
 
   return null;

@@ -46,7 +46,7 @@ const Surf = () => {
         />
       ))}
 
-      <CameraOperator commitsCount={commits.length} />
+      {commits.length && <CameraOperator commitsCount={commits.length} />}
     </SurfContext.Provider>
   );
 };
