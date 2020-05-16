@@ -1,16 +1,15 @@
-import { useRef, useEffect, useMemo } from "react";
-import { useFrame, useThree } from "react-three-fiber";
-import { Vector3 } from "three";
+import { useRef, useMemo } from "react";
+import { useFrame } from "react-three-fiber";
+import { useSpring } from "react-spring/three";
 
+import { useHUD } from "components/HUD";
 import { useConfig } from "utils/config";
 
-const DAMPING_DURATION = 30;
+const DISTANCE_FROM_HEAD_DAMPING = 0.015;
+const CAMERA_UP_DAMPING = 0.001;
 
 const CameraOperator = ({ commitsCount }) => {
-  const lookPosition = useRef(new Vector3(0, 0.1, 0));
-  const dampingSpeed = useRef(0);
-  const { camera } = useThree();
-
+  const distanceFromHead = useRef(0);
   const speed = useConfig(c => c.speed);
   const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
   const commitsDistance = useConfig(c => c.commitsDistance);
@@ -22,17 +21,44 @@ const CameraOperator = ({ commitsCount }) => {
     variationDuration
   } = useConfig(c => c.camera);
 
-  useEffect(() => {
-    camera.position.x = 0;
-    camera.position.y = y;
-    camera.position.z = 0;
-  }, [camera, y]);
+  const { log } = useHUD();
+
+  const [spring, set] = useSpring(() => ({
+    position: [0, y, 1],
+    lookPosition: [0, 0.1, 0],
+    up: [0, 0, 1],
+    config: {
+      mass: 1,
+      tension: 280,
+      friction: 120
+    }
+  }));
 
   // {waitOnFirstCommit}s wait + time to reach the second commit
   const timeToMove = useMemo(() => waitOnFirstCommit + 1 / speed, [
     waitOnFirstCommit,
     speed
   ]);
+  // last commit is reached with the camera
+  const timeToAlmostEnd = useMemo(
+    () => waitOnFirstCommit + (commitsCount - 1) / speed,
+    [waitOnFirstCommit, speed, commitsCount]
+  );
+  // the camera reach the max elevation on last commit
+  const timeToEnd = useMemo(() => {
+    const tte = waitOnFirstCommit + commitsCount / speed;
+    const ttq = (tte % variationDuration) / variationDuration;
+
+    if (ttq > 0 && ttq < 0.2) {
+      return tte + (0.2 - ttq) * variationDuration;
+    }
+
+    if (ttq > 0 && ttq > 0.2) {
+      return tte + (1.2 - ttq) * variationDuration;
+    }
+
+    return tte;
+  }, [waitOnFirstCommit, speed, commitsCount, variationDuration]);
 
   useFrame(({ camera, clock }) => {
     if (isOrbitControlsEnabled) {
@@ -41,53 +67,78 @@ const CameraOperator = ({ commitsCount }) => {
     }
 
     // angle used for position variation
-    const alpha = (clock.elapsedTime / variationDuration) * Math.PI * 2;
+    const alpha =
+      (Math.min(clock.elapsedTime, timeToEnd) / variationDuration) *
+      Math.PI *
+      2;
 
     let headZ = 0;
-    let cameraZ = 0;
+    let targetDistanceFromHead = 0;
+    let targetUp = [0, 0, 1];
+
+    // We have four time windows
+    // 1. Before everithing starts | the camera z is same as first commt z | no
+    //    movement.
+    // 2. Camera starts moving ahead taking a certain distance from the current
+    //    commit, the last commit is not reached yet.
+    // 3. The latest commit is reached but the camera still moves to get the
+    //    final position.
+    // 4. Camera is in it's final position observing the last commit.
     if (clock.elapsedTime > timeToMove) {
       headZ = (clock.elapsedTime - timeToMove) * speed * commitsDistance;
-      cameraZ = Math.min(headZ, (commitsCount - 1) * commitsDistance - z);
-    } else {
-      cameraZ = Math.min(headZ, (commitsCount - 1) * commitsDistance);
+      headZ = Math.min(headZ, (commitsCount - 1) * commitsDistance);
+      targetDistanceFromHead = z;
     }
-    headZ = Math.min(headZ, (commitsCount - 1) * commitsDistance);
 
-    // update damping speed
-    if (headZ < (commitsCount - 3) * commitsDistance) {
-      dampingSpeed.current = Math.max(
-        0.001,
-        Math.min((clock.elapsedTime - timeToMove) / DAMPING_DURATION, 1)
-      );
-    } else {
-      dampingSpeed.current = Math.max(
-        0.005,
-        Math.min(
-          1 -
-            (cameraZ - (commitsCount - 3) * commitsDistance) /
-              (commitsDistance * 4),
-          1
-        )
-      );
+    if (clock.elapsedTime > timeToMove + 1 / speed) {
+      targetUp = [0, 1, 0];
     }
+
+    if (clock.elapsedTime > timeToAlmostEnd) {
+      targetDistanceFromHead = 0;
+    }
+
+    if (clock.elapsedTime > timeToEnd - variationDuration / 2) {
+      targetUp = [-1, 0, 0];
+    }
+
+    distanceFromHead.current +=
+      (targetDistanceFromHead - distanceFromHead.current) *
+      DISTANCE_FROM_HEAD_DAMPING;
 
     // calc new position
     const newX = xVariation * Math.cos(alpha);
     const newY = y + yVariation * Math.sin(alpha);
-    const newZ = z + cameraZ;
+    const newZ = headZ + 1 + distanceFromHead.current;
 
-    // apply damping and set position
-    camera.position.x += (newX - camera.position.x) * dampingSpeed.current;
-    camera.position.y += (newY - camera.position.y) * dampingSpeed.current;
-    camera.position.z += (newZ - camera.position.z) * dampingSpeed.current;
+    const headX = 0;
 
+    const [upX, upY, upZ] = camera.up.toArray();
+    const newUp = [
+      upX + (targetUp[0] - upX) * CAMERA_UP_DAMPING,
+      upY + (targetUp[1] - upY) * CAMERA_UP_DAMPING,
+      upZ + (targetUp[2] - upZ) * CAMERA_UP_DAMPING
+    ];
+
+    // update spring
+    set({
+      position: [newX, newY, newZ],
+      lookPosition: [headX, 0.1, headZ]
+    });
+
+    log({
+      currentZ: camera.position.z,
+      targetZ: newZ,
+      zDiff: newZ - camera.position.z,
+      currentRotationZ: camera.rotation.z,
+      distanceFromHeadZ: distanceFromHead.current
+    });
+
+    // update position
+    camera.position.set(...spring.position.getValue());
     // update look position
-    lookPosition.current.z +=
-      (headZ - lookPosition.current.z) * dampingSpeed.current;
-    camera.lookAt(lookPosition.current);
-
-    // apply continuous roll
-    camera.rotation.z = Math.PI - 0.0625 * Math.PI * Math.cos(alpha);
+    camera.up.set(...newUp);
+    camera.lookAt(...spring.lookPosition.getValue());
   });
 
   return null;

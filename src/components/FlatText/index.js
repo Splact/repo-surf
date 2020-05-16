@@ -13,12 +13,7 @@ const DEFAULT_ATLAS = new Texture();
 const DEFAULT_COLOR = "#FFFFFF";
 
 const FlatText = props => {
-  const {
-    active: isActive,
-    children,
-    color = DEFAULT_COLOR,
-    ...meshProps
-  } = props;
+  const { active: isActive, children, color, width, ...meshProps } = props;
 
   const ref = useRef(null);
   const [font, setFont] = useState(null);
@@ -45,7 +40,7 @@ const FlatText = props => {
         const geometry = createTextGeometry({
           text,
           font: definition, // the bitmap font definition
-          width: 960, // width for word-wrap
+          width, // width for word-wrap
           lineHeight: 48
         });
 
@@ -84,6 +79,11 @@ const FlatText = props => {
       </mesh>
     </group>
   );
+};
+
+FlatText.defaultProps = {
+  color: DEFAULT_COLOR,
+  width: 960
 };
 
 export default FlatText;

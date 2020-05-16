@@ -4,6 +4,7 @@ import * as THREE from "three";
 
 import BlinkingBadge from "components/BlinkingBadge";
 import Effects from "components/Effects";
+import { HUD } from "components/HUD";
 import Stats from "components/Stats";
 import Surf from "components/Surf";
 import { DatGui } from "utils/config";
@@ -42,6 +43,7 @@ const App = () => (
     </Canvas>
 
     {isDevelopment && <DatGui />}
+    {isDevelopment && <HUD />}
 
     <BlinkingBadge>Preview</BlinkingBadge>
   </>

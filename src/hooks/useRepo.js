@@ -34,8 +34,14 @@ export default () => {
     async function fetch() {
       try {
         let commits = await fetchCommits(owner, repo);
+        // commits = commits.slice(41, 60);
+        // commits.forEach((c, i) => (c.index = commits.length - i - 1));
 
-        setState(state => ({ ...state, commits, isLoading: false }));
+        setState(state => ({
+          ...state,
+          commits,
+          isLoading: false
+        }));
       } catch (error) {
         setState(state => ({ ...state, isLoading: false, error }));
       }

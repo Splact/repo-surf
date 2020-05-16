@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useContext } from "react";
-import { useSpring, a } from "react-spring/three";
+import { useSpring, config, a } from "react-spring/three";
 
 import FlatText from "components/FlatText";
 import { SurfContext } from "components/Surf";
@@ -18,7 +18,8 @@ const Commit = forwardRef((props, ref) => {
   const [spring, set] = useSpring(() => ({
     scale: [0.01, 0.01, 0.01],
     position: [0, 0, 0],
-    rotation: [0, 0, 0]
+    rotation: [0, 0, 0],
+    config: config.slow
   }));
 
   useEffect(() => {
