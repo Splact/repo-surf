@@ -2,7 +2,6 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "react-three-fiber";
 import { useSpring } from "react-spring/three";
 
-import { useHUD } from "components/HUD";
 import { useConfig } from "utils/config";
 
 const DISTANCE_FROM_HEAD_DAMPING = 0.015;
@@ -20,8 +19,6 @@ const CameraOperator = ({ commitsCount }) => {
     yVariation,
     variationDuration
   } = useConfig(c => c.camera);
-
-  const { log } = useHUD();
 
   const [spring, set] = useSpring(() => ({
     position: [0, y, 1],
@@ -124,14 +121,6 @@ const CameraOperator = ({ commitsCount }) => {
     set({
       position: [newX, newY, newZ],
       lookPosition: [headX, 0.1, headZ]
-    });
-
-    log({
-      currentZ: camera.position.z,
-      targetZ: newZ,
-      zDiff: newZ - camera.position.z,
-      currentRotationZ: camera.rotation.z,
-      distanceFromHeadZ: distanceFromHead.current
     });
 
     // update position
