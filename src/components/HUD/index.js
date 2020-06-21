@@ -14,12 +14,14 @@ export const HUD = ({ filter }) => {
 
   return (
     <table className="hud">
-      {keys.map(k => (
-        <tr>
-          <th>{k}</th>
-          <td>{hud[k]}</td>
-        </tr>
-      ))}
+      <tbody>
+        {keys.map(k => (
+          <tr key={k}>
+            <th>{k}</th>
+            <td>{hud[k]}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
