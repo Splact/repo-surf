@@ -16,7 +16,7 @@
     "react-three-fiber": "^3.0.8",
     "stats.js": "^0.17.0",
     "three": "^0.112.0",
-    "three-bmfont-text": "^2.3.0",
+    "three-bmfont-text": "https://github.com/dmarcos/three-bmfont-text.git",
     "zustand": "^2.2.1"
   },
   "scripts": {
