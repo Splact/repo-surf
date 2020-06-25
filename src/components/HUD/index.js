@@ -17,8 +17,8 @@ export const HUD = ({ filter }) => {
       <tbody>
         {keys.map(k => (
           <tr key={k}>
-            <th>{k}</th>
             <td>{hud[k]}</td>
+            <th>{k}</th>
           </tr>
         ))}
       </tbody>

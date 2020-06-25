@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { fetchCommits } from "api";
+import loadingManager, { RESOURCE_TYPE_FETCH } from "utils/loadingManager";
 
 const getRepoParamsFromPath = () => {
   const parts = window.location.pathname.replace(/^\/+|\/+$/g, "").split("/");
@@ -18,11 +18,7 @@ const getRepoParamsFromPath = () => {
 };
 
 export default () => {
-  const [state, setState] = useState({
-    commits: [],
-    isLoading: true,
-    error: null
-  });
+  const [commits, setCommits] = useState([]);
 
   const { owner = "splact", repo = "morbido" } = getRepoParamsFromPath();
 
@@ -32,19 +28,17 @@ export default () => {
 
   useEffect(() => {
     async function fetch() {
-      try {
-        let commits = await fetchCommits(owner, repo);
-        // commits = commits.slice(41, 60);
-        // commits.forEach((c, i) => (c.index = commits.length - i - 1));
+      const fetchedCommitsResource = loadingManager.registerResource(
+        `${process.env.REACT_APP_API_BASE_URL}/github/${owner}/${repo}`,
+        RESOURCE_TYPE_FETCH
+      );
 
-        setState(state => ({
-          ...state,
-          commits,
-          isLoading: false
-        }));
-      } catch (error) {
-        setState(state => ({ ...state, isLoading: false, error }));
-      }
+      // get response as soon as available
+      const fetchedCommits = await fetchedCommitsResource.get();
+      // commits = commits.slice(41, 60);
+      // commits.forEach((c, i) => (c.index = commits.length - i - 1));
+
+      setCommits(fetchedCommits);
     }
 
     if (owner !== "" && repo !== "") {
@@ -52,5 +46,5 @@ export default () => {
     }
   }, [owner, repo]);
 
-  return { owner, repo, ...state };
+  return { owner, repo, commits };
 };

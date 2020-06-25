@@ -4,15 +4,13 @@ import { useFrame } from "react-three-fiber";
 import Branch from "components/Branch";
 import CameraOperator from "components/CameraOperator";
 import FlatText from "components/FlatText";
-import useRepo from "hooks/useRepo";
 import { useConfig } from "utils/config";
 
 import useBranches from "./useBranches";
 
 export const SurfContext = createContext({ currentCommit: -1 });
 
-const Surf = () => {
-  const { owner, repo, commits } = useRepo();
+const Surf = ({ owner, repo, commits }) => {
   const branches = useBranches(commits);
 
   const [currentCommit, setCurrentCommit] = useState(0);
