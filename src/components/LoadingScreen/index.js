@@ -92,7 +92,7 @@ const LoadingScreen = ({ loaded: isLoaded, progress: targetProgress }) => {
           <SwitchTransition>
             <CSSTransition
               key={MESSAGES[messageIndex]}
-              timeout={400}
+              timeout={300}
               classNames="LoadingScreen__message-"
             >
               <div className="LoadingScreen__message">

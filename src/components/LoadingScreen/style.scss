@@ -59,7 +59,7 @@
       opacity: 0;
     }
     &--enter-active {
-      transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
       transition-property: transform, opacity;
       transform: translateY(0);
       opacity: 1;
@@ -69,7 +69,7 @@
       opacity: 1;
     }
     &--exit-active {
-      transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
       transition-property: transform, opacity;
       transform: translateY(-100%);
       opacity: 0;
