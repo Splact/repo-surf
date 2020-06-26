@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect, useContext, useMemo } from "react";
 import { useSpring, config } from "react-spring/three";
 import { useFrame } from "react-three-fiber";
 import { Mesh, CircleBufferGeometry, MeshLambertMaterial } from "three";
@@ -144,6 +144,13 @@ const Commit = props => {
     commitRef.current.mesh.material.opacity = 1;
   });
 
+  const textPosition = useMemo(() => [-radius, 0, 5], [radius]);
+  const textRotation = useMemo(() => [-Math.PI / 2, Math.PI, 0], []);
+  const text = useMemo(
+    () => [`#${index}`, "", sha.substr(0, 7), "", message],
+    []
+  );
+
   return (
     <group
       ref={groupRef}
@@ -152,28 +159,12 @@ const Commit = props => {
     >
       <FlatText
         active={isActive}
-        position={[-radius, 0, 5]}
-        rotation={[-Math.PI / 2, Math.PI, 0]}
+        position={textPosition}
+        rotation={textRotation}
         renderOrder={renderOrder + 1}
       >
-        {`#${index}`}
-        {""}
-        {sha.substr(0, 7)}
-        {""}
-        {message}
+        {text}
       </FlatText>
-
-      {/* <a.mesh {...spring} renderOrder={renderOrder}>
-        <circleBufferGeometry attach="geometry" args={[radius, 32]} />
-        <meshLambertMaterial
-          attach="material"
-          emissive={color || defaultColor}
-          emissiveIntensity={emissiveIntensity}
-          depthTest={false}
-          transparent
-          opacity={isReady ? 1 : 0}
-        />
-      </a.mesh> */}
     </group>
   );
 };

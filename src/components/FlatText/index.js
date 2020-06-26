@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import React, { memo, useRef, useEffect, useState, useMemo } from "react";
 import { useSpring, a } from "react-spring/three";
 import { Color, Texture } from "three";
 import createMSDFShader from "three-bmfont-text/shaders/msdf";
@@ -19,7 +19,7 @@ const ptMono = loadingManager.registerResource(
 const DEFAULT_ATLAS = new Texture();
 const DEFAULT_COLOR = "#FFFFFF";
 
-const FlatText = props => {
+const FlatText = memo(props => {
   const { active: isActive, children, color, width, ...meshProps } = props;
 
   const ref = useRef(null);
@@ -83,7 +83,7 @@ const FlatText = props => {
       </mesh>
     </group>
   );
-};
+});
 
 FlatText.defaultProps = {
   color: DEFAULT_COLOR,
