@@ -4,7 +4,6 @@ import { useFrame } from "react-three-fiber";
 import { Mesh, CircleBufferGeometry, MeshLambertMaterial } from "three";
 
 import FlatText from "components/FlatText";
-import { useHUD } from "components/HUD";
 import { SurfContext } from "components/Surf";
 import { useConfig } from "utils/config";
 import isInView from "utils/isInView";
@@ -48,7 +47,17 @@ const freeCommitOnBuffer = commit => {
 };
 
 const Commit = props => {
-  const { index, position, color, renderOrder = 0, sha, message } = props;
+  const {
+    index,
+    position,
+    color,
+    renderOrder = 0,
+    sha,
+    message,
+    isReady,
+    isActive
+  } = props;
+
   const { radius, color: defaultColor, emissiveIntensity } = useConfig(
     c => c.commit
   );
@@ -56,11 +65,6 @@ const Commit = props => {
   const groupRef = useRef();
   const commitRef = useRef();
   const [isGone, setIsGone] = useState(false);
-  const { currentCommit } = useContext(SurfContext);
-  const { log } = useHUD();
-
-  const isReady = index < currentCommit + 1;
-  const isActive = index > currentCommit - 2 && index <= currentCommit;
 
   const [spring, set] = useSpring(() => ({
     scale: [0.01, 0.01, 0.01],
@@ -73,31 +77,18 @@ const Commit = props => {
     if (isReady) {
       // open it
       set({ scale: [1, 1, 1] });
-      window.readyCommitsCount = (window.readyCommitsCount || 0) + 1;
     }
-
-    log({
-      commitsBufferSize: commitsBuffer.length,
-      readyCommitsCount: window.readyCommitsCount
-    });
-  }, [isReady, set, log]);
+  }, [isReady, set]);
 
   useEffect(() => {
     if (isActive) {
       // open it
       set({ scale: [1.2, 1.2, 1.2], position: [0, 1, 0] });
-
-      window.currentCommitsCount = (window.currentCommitsCount || 0) + 1;
     } else {
       // close it
       set({ scale: [1, 1, 1], position: [0, 0, 0] });
-      window.currentCommitsCount = Math.max(
-        (window.currentCommitsCount || 0) - 1,
-        0
-      );
     }
-    log({ currentCommitsCount: window.currentCommitsCount });
-  }, [isActive, set, log]);
+  }, [isActive, set]);
 
   useFrame(({ camera }) => {
     if (isGone) {
@@ -146,10 +137,11 @@ const Commit = props => {
 
   const textPosition = useMemo(() => [-radius, 0, 5], [radius]);
   const textRotation = useMemo(() => [-Math.PI / 2, Math.PI, 0], []);
-  const text = useMemo(
-    () => [`#${index}`, "", sha.substr(0, 7), "", message],
-    []
-  );
+  const text = useMemo(() => [`#${index}`, "", sha.substr(0, 7), "", message], [
+    index,
+    message,
+    sha
+  ]);
 
   return (
     <group
@@ -169,4 +161,33 @@ const Commit = props => {
   );
 };
 
-export default Commit;
+const CommitWrapper = ({
+  index,
+  color,
+  position,
+  renderOrder = 0,
+  sha,
+  message
+}) => {
+  const { currentCommit } = useContext(SurfContext);
+  const isReady = index < currentCommit + 1;
+  const isActive = index > currentCommit - 2 && index <= currentCommit;
+
+  return useMemo(
+    () => (
+      <Commit
+        index={index}
+        position={position}
+        renderOrder={renderOrder}
+        sha={sha}
+        message={message}
+        color={color}
+        isReady={isReady}
+        isActive={isActive}
+      />
+    ),
+    [index, position, renderOrder, sha, message, color, isReady, isActive]
+  );
+};
+
+export default CommitWrapper;

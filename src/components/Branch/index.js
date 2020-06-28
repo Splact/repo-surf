@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { memo, useRef, useMemo } from "react";
 import { useFrame, extend, useThree } from "react-three-fiber";
 import { Vector3, FrontSide } from "three";
 
@@ -10,14 +10,7 @@ import BranchMaterial from "./BranchMaterial";
 
 extend({ BranchGeometry, BranchMaterial });
 
-const Branch = ({
-  name,
-  index,
-  color,
-  commits,
-  skipLastCommit,
-  skipFirstCommit
-}) => {
+const Branch = memo(({ color, commits, skipLastCommit, skipFirstCommit }) => {
   const material = useRef();
 
   const speed = useConfig(c => c.speed);
@@ -25,8 +18,6 @@ const Branch = ({
   const waitOnFirstCommit = useConfig(c => c.waitOnFirstCommit);
   const { width, color: defaultColor } = useConfig(c => c.track);
   const { camera } = useThree();
-
-  // console.log(`Render branch "${name}"`);
 
   const vertices = useMemo(() => {
     const vv = [];
@@ -131,6 +122,6 @@ const Branch = ({
       })}
     </>
   );
-};
+});
 
 export default Branch;

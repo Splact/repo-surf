@@ -4,7 +4,6 @@ import * as THREE from "three";
 
 import BlinkingBadge from "components/BlinkingBadge";
 import Effects from "components/Effects";
-import { HUD } from "components/HUD";
 import LoadingScreen from "components/LoadingScreen";
 import Stats from "components/Stats";
 import Surf from "components/Surf";
@@ -72,7 +71,6 @@ const App = () => {
       <LoadingScreen loaded={isCanvasReady} progress={progress} />
 
       {isDevelopment && <DatGui />}
-      {isDevelopment && <HUD />}
 
       <BlinkingBadge>Preview</BlinkingBadge>
     </>
