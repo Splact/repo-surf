@@ -17,14 +17,10 @@ const getRepoParamsFromPath = () => {
   };
 };
 
-export default () => {
+const useRepo = () => {
   const [commits, setCommits] = useState([]);
 
   const { owner = "splact", repo = "morbido" } = getRepoParamsFromPath();
-
-  if (!repo) {
-    return { owner, repo, commits: [], isLoading: false, error: true };
-  }
 
   useEffect(() => {
     async function fetch() {
@@ -48,3 +44,5 @@ export default () => {
 
   return { owner, repo, commits };
 };
+
+export default useRepo;

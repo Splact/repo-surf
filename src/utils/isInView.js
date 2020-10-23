@@ -3,7 +3,7 @@ import { Frustum, Matrix4 } from "three";
 const frustum = new Frustum();
 const cameraViewProjectionMatrix = new Matrix4();
 
-export default (object, camera) => {
+const isInView = (object, camera) => {
   // make sure the camera matrix is updated
   camera.updateMatrixWorld();
   camera.matrixWorldInverse.getInverse(camera.matrixWorld);
@@ -21,3 +21,5 @@ export default (object, camera) => {
     ? frustum.containsPoint(object.position)
     : frustum.intersectsObject(object);
 };
+
+export default isInView;

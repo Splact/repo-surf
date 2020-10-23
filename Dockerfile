@@ -1,11 +1,19 @@
-FROM alpine:latest
+FROM node:12-alpine
 
 # Add ipv6 support
 RUN echo "ipv6" >> /etc/modules
 
+RUN apk update
+
+RUN node --version
+
+# Install git
+RUN apk add git
+RUN git --version
+
 # Install yarn
-RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories \
-    && apk add --no-cache yarn
+# RUN apk add --no-cache yarn
+RUN yarn --version
 
 # Install yarn dependencies
 ADD package.json /yarn-tmp/package.json

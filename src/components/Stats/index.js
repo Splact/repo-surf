@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useFrame } from "react-three-fiber";
-import Stats from "stats.js";
+import StatsJS from "stats.js";
 
 let stats;
 
-export default () => {
+const Stats = () => {
   useEffect(() => {
-    stats = new Stats();
+    stats = new StatsJS();
     stats.showPanel(0);
     document.body.appendChild(stats.dom);
 
@@ -21,3 +21,5 @@ export default () => {
 
   return null;
 };
+
+export default Stats;
