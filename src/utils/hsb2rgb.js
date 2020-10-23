@@ -1,4 +1,4 @@
-export default (h0, s, v) => {
+const hsb2rgb = (h0, s, v) => {
   let h = h0 * 360;
   var R, G, B, X, C;
   h = (h % 360) / 60;
@@ -13,3 +13,5 @@ export default (h0, s, v) => {
 
   return { r: R, g: G, b: B };
 };
+
+export default hsb2rgb;

@@ -1,4 +1,4 @@
-export default (v, { min, max }) => {
+const clamp = (v, { min, max }) => {
   let result = v;
 
   if (min !== undefined && result < min) {
@@ -9,3 +9,5 @@ export default (v, { min, max }) => {
 
   return result;
 };
+
+export default clamp;

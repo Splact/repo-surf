@@ -1,10 +1,10 @@
 import { TextureLoader } from "three";
-import loadFont from "load-bmfont";
+import loadBMFont from "load-bmfont";
 import loadingManager from "utils/loadingManager";
 
-export default ({ font, image }) =>
+const loadFont = ({ font, image }) =>
   new Promise((resolve, reject) => {
-    loadFont(font, (e, definition) => {
+    loadBMFont(font, (e, definition) => {
       if (e) {
         reject(e);
       } else {
@@ -22,3 +22,5 @@ export default ({ font, image }) =>
       }
     });
   });
+
+export default loadFont;
