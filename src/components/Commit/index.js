@@ -48,7 +48,6 @@ const freeCommitOnBuffer = commit => {
 
 const Commit = props => {
   const {
-    index,
     position,
     color,
     renderOrder = 0,
@@ -137,11 +136,7 @@ const Commit = props => {
 
   const textPosition = useMemo(() => [-radius, 0, 5], [radius]);
   const textRotation = useMemo(() => [-Math.PI / 2, Math.PI, 0], []);
-  const text = useMemo(() => [`#${index}`, "", sha.substr(0, 7), "", message], [
-    index,
-    message,
-    sha
-  ]);
+  const text = useMemo(() => [sha.substr(0, 7), "", message], [message, sha]);
 
   return (
     <group
@@ -171,7 +166,7 @@ const CommitWrapper = ({
 }) => {
   const { currentCommit } = useContext(SurfContext);
   const isReady = index < currentCommit + 1;
-  const isActive = index > currentCommit - 2 && index <= currentCommit;
+  const isActive = index > currentCommit - 3 && index <= currentCommit;
 
   return useMemo(
     () => (

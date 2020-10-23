@@ -21,9 +21,11 @@ export const [useConfig] = create(set => ({
   },
   camera: {
     position: {
+      x: 0,
       y: 25,
       z: -150
     },
+    distanceFromHead: 150,
     near: 0.01,
     far: 1000,
     fov: 70,
@@ -31,10 +33,10 @@ export const [useConfig] = create(set => ({
     yVariation: 20,
     variationDuration: 15
   },
-  speed: 0.7,
+  speed: 0.8,
   waitOnFirstCommit: 1.5,
   commitsDistance: 75,
-  branchesDistance: 25,
+  branchesDistance: 20,
   isOrbitControlsEnabled: false,
   set
 }));
@@ -77,6 +79,13 @@ export const DatGui = () => {
 
       <DatFolder title="Camera">
         <DatNumber
+          path="camera.position.x"
+          label="Position (x)"
+          min={-500}
+          max={500}
+          step={1}
+        />
+        <DatNumber
           path="camera.position.y"
           label="Position (y)"
           min={0}
@@ -110,6 +119,13 @@ export const DatGui = () => {
           min={0.5}
           max={100}
           step={0.1}
+        />
+        <DatNumber
+          path="camera.distanceFromHead"
+          label="Distance from HEAD"
+          min={0}
+          max={500}
+          step={1}
         />
       </DatFolder>
 

@@ -4,7 +4,7 @@ import { useSpring } from "react-spring/three";
 
 import { useConfig } from "utils/config";
 
-const DISTANCE_FROM_HEAD_DAMPING = 0.015;
+const DISTANCE_FROM_HEAD_DAMPING = 0.02;
 const CAMERA_UP_DAMPING = 0.001;
 
 const CameraOperator = ({ commitsCount }) => {
@@ -14,20 +14,20 @@ const CameraOperator = ({ commitsCount }) => {
   const commitsDistance = useConfig(c => c.commitsDistance);
   const isOrbitControlsEnabled = useConfig(c => c.isOrbitControlsEnabled);
   const {
-    position: { y, z },
+    position: { x, y },
     xVariation,
     yVariation,
-    variationDuration
+    variationDuration,
+    distanceFromHead: distanceFromHeadOnRun
   } = useConfig(c => c.camera);
 
   const [spring, set] = useSpring(() => ({
-    position: [0, y, 1],
+    position: [0, 10, -0.1],
     lookPosition: [0, 0.1, 0],
-    up: [0, 0, 1],
     config: {
       mass: 1,
       tension: 280,
-      friction: 120
+      friction: 200
     }
   }));
 
@@ -44,17 +44,9 @@ const CameraOperator = ({ commitsCount }) => {
   // the camera reach the max elevation on last commit
   const timeToEnd = useMemo(() => {
     const tte = waitOnFirstCommit + commitsCount / speed;
-    const ttq = (tte % variationDuration) / variationDuration;
+    const ttq = variationDuration - (tte % variationDuration);
 
-    if (ttq > 0 && ttq < 0.2) {
-      return tte + (0.2 - ttq) * variationDuration;
-    }
-
-    if (ttq > 0 && ttq > 0.2) {
-      return tte + (1.2 - ttq) * variationDuration;
-    }
-
-    return tte;
+    return tte + ttq - variationDuration / 2;
   }, [waitOnFirstCommit, speed, commitsCount, variationDuration]);
 
   useFrame(({ camera, clock }) => {
@@ -65,12 +57,14 @@ const CameraOperator = ({ commitsCount }) => {
 
     // angle used for position variation
     const alpha =
-      (Math.min(clock.elapsedTime, timeToEnd) / variationDuration) *
-      Math.PI *
-      2;
+      -Math.PI / 2 +
+      (Math.max(0, Math.min(clock.elapsedTime - timeToMove, timeToEnd)) /
+        variationDuration) *
+        Math.PI *
+        2;
 
     let headZ = 0;
-    let targetDistanceFromHead = 0;
+    let targetDistanceFromHead = -distanceFromHeadOnRun / 2;
     let targetUp = [0, 0, 1];
 
     // We have four time windows
@@ -84,7 +78,7 @@ const CameraOperator = ({ commitsCount }) => {
     if (clock.elapsedTime > timeToMove) {
       headZ = (clock.elapsedTime - timeToMove) * speed * commitsDistance;
       headZ = Math.min(headZ, (commitsCount - 1) * commitsDistance);
-      targetDistanceFromHead = z;
+      targetDistanceFromHead = -distanceFromHeadOnRun;
     }
 
     if (clock.elapsedTime > timeToMove + 1 / speed) {
@@ -92,7 +86,7 @@ const CameraOperator = ({ commitsCount }) => {
     }
 
     if (clock.elapsedTime > timeToAlmostEnd) {
-      targetDistanceFromHead = 0;
+      targetDistanceFromHead = -1;
     }
 
     if (clock.elapsedTime > timeToEnd - variationDuration / 2) {
@@ -104,7 +98,7 @@ const CameraOperator = ({ commitsCount }) => {
       DISTANCE_FROM_HEAD_DAMPING;
 
     // calc new position
-    const newX = xVariation * Math.cos(alpha);
+    const newX = x + xVariation * Math.cos(alpha);
     const newY = y + yVariation * Math.sin(alpha);
     const newZ = headZ + 1 + distanceFromHead.current;
 
@@ -125,9 +119,10 @@ const CameraOperator = ({ commitsCount }) => {
 
     // update position
     camera.position.set(...spring.position.getValue());
+
     // update look position
-    camera.up.set(...newUp);
     camera.lookAt(...spring.lookPosition.getValue());
+    camera.up.set(...newUp);
   });
 
   return null;

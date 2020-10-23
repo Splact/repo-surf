@@ -8,17 +8,12 @@ import LoadingScreen from "components/LoadingScreen";
 import Stats from "components/Stats";
 import Surf from "components/Surf";
 import useRepo from "hooks/useRepo";
-import { DatGui } from "utils/config";
+import { DatGui, useConfig } from "utils/config";
 import loadingManager, { useLoadingState } from "utils/loadingManager";
 import { isDevelopment } from "utils/isEnvironment";
 
 import "./style.scss";
 
-const cameraSettings = {
-  near: 0.001,
-  far: 1000,
-  fov: 70
-};
 const backgroundColor = new THREE.Color("#0C0E16");
 
 const App = () => {
@@ -47,6 +42,13 @@ const App = () => {
       }, 1000);
     }
   }, [isLoaded, progress]);
+
+  const cameraSettings = useConfig(c => ({
+    near: c.camera.near,
+    far: c.camera.far,
+    fov: c.camera.fov,
+    position: [0, 0, -0.1]
+  }));
 
   return (
     <>
