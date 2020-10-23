@@ -1,24 +1,26 @@
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import React, { memo, useRef, useEffect, useState, useMemo } from "react";
 import { useSpring, a } from "react-spring/three";
 import { Color, Texture } from "three";
 import createMSDFShader from "three-bmfont-text/shaders/msdf";
 import createTextGeometry from "three-bmfont-text";
 
-import loadFont from "./loadFont";
+import ptMonoFont from "assets/fonts/pt-mono/ptm55ft.fnt";
+import ptMonoImage from "assets/fonts/pt-mono/ptm55ft.png";
+import loadingManager, { RESOURCE_TYPE_FONT } from "utils/loadingManager";
 
-import sourceCodeProFont from "assets/fonts/source-code-pro/bold.fnt";
-import sourceCodeProImage from "assets/fonts/source-code-pro/bold.png";
+const ptMono = loadingManager.registerResource(
+  {
+    font: ptMonoFont,
+    image: ptMonoImage
+  },
+  RESOURCE_TYPE_FONT
+);
 
 const DEFAULT_ATLAS = new Texture();
 const DEFAULT_COLOR = "#FFFFFF";
 
-const FlatText = props => {
-  const {
-    active: isActive,
-    children,
-    color = DEFAULT_COLOR,
-    ...meshProps
-  } = props;
+const FlatText = memo(props => {
+  const { active: isActive, children, color, width, ...meshProps } = props;
 
   const ref = useRef(null);
   const [font, setFont] = useState(null);
@@ -36,25 +38,22 @@ const FlatText = props => {
   );
 
   useEffect(() => {
-    loadFont({
-      font: sourceCodeProFont,
-      image: sourceCodeProImage
-    })
-      .then(({ definition, atlas }) => {
-        // create text geometry
-        const geometry = createTextGeometry({
-          text,
-          font: definition, // the bitmap font definition
-          width: 640, // width for word-wrap
-          lineHeight: 48
-        });
+    const f = async () => {
+      const { definition, atlas } = await ptMono.get();
 
-        setFont({ definition, atlas, geometry });
-      })
-      .catch(e => {
-        console.error(e);
+      // create text geometry
+      const geometry = createTextGeometry({
+        text,
+        font: definition, // the bitmap font definition
+        width, // width for word-wrap
+        lineHeight: 48
       });
-  }, [text, setFont]);
+
+      setFont({ definition, atlas, geometry });
+    };
+
+    f();
+  }, [text, setFont, width]);
 
   const [spring, set] = useSpring(() => ({ "uniforms-opacity-value": 0 }));
   useEffect(() => {
@@ -84,6 +83,11 @@ const FlatText = props => {
       </mesh>
     </group>
   );
+});
+
+FlatText.defaultProps = {
+  color: DEFAULT_COLOR,
+  width: 960
 };
 
 export default FlatText;

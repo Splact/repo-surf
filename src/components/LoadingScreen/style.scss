@@ -1,0 +1,78 @@
+@import "styles/breakpoints.scss";
+@import "styles/colors.scss";
+@import "styles/z.scss";
+
+.LoadingScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $z--loading-screen;
+
+  user-select: none;
+  background: $c--vulcan;
+
+  transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0;
+
+  &--visible {
+    opacity: 1;
+  }
+
+  &__inner {
+    padding: 2.4rem;
+
+    color: white;
+
+    @include media-md() {
+      padding: 3.2rem;
+    }
+  }
+
+  &__progress {
+    font-size: 12.8rem;
+
+    @include media-md() {
+      font-size: 16rem;
+    }
+
+    &::after {
+      content: "%";
+    }
+  }
+
+  &__messages {
+  }
+
+  &__message {
+    font-size: 3.2rem;
+    text-transform: uppercase;
+
+    &--enter {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    &--enter-active {
+      transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      transition-property: transform, opacity;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    &--exit {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    &--exit-active {
+      transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      transition-property: transform, opacity;
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+}

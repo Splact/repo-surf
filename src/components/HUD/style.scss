@@ -1,0 +1,35 @@
+@import "styles/z.scss";
+
+.hud {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 1rem;
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: $z--hud;
+
+  border: 2px solid #030523;
+  background: #071b36;
+  color: #6ae7e9;
+  opacity: 0.3;
+  transform: scale(0.9);
+  transform-origin: bottom right;
+
+  font-family: monospace;
+  font-size: 1.6rem;
+  text-align: right;
+
+  transition: 1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition-property: opacity, transform;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  th {
+    font-weight: bold;
+  }
+}

@@ -1,4 +1,5 @@
 @import "styles/colors";
+@import "styles/z.scss";
 
 .BlinkingBadge {
   margin: 2rem;
@@ -11,8 +12,9 @@
   animation: blink infinite 2s forwards cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
+  z-index: $z--blinking-message;
 }
 
 @keyframes blink {

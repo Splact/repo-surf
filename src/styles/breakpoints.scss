@@ -1,0 +1,19 @@
+$b--md: 414px;
+$b--lg: 1024px;
+
+@mixin media($breakpoint) {
+  @media (min-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @include media($b--md) {
+    @content;
+  }
+}
+@mixin media-lg {
+  @include media($b--lg) {
+    @content;
+  }
+}
