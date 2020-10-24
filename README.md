@@ -8,7 +8,7 @@ repo-surf is a repository viewer that let you dive through its commits and branc
   <img width="420" height="236" src="https://github.com/splact/repo-surf/blob/master/preview.gif?raw=true">
 </p>
 
-## Repo selection
+## Repo selection 🔍
 
 Repo Surf supports Github repositories only pointing to `master` branch (that's a current limitation, see Wishlist).
 
@@ -28,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Backend repo can be found [here](https://github.com/Splact/repo-surf-backend).
 
-## Wishlist ✨
+### Wishlist ✨
 
 - [ ] Intro screen with a selection of most famous repositories to play (show 4 randomly picked from a larger list)
 - [ ] Debris (see [r3f-game](https://codesandbox.io/embed/r3f-game-i2160))
