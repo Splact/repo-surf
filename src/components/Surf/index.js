@@ -3,6 +3,7 @@ import { useFrame } from "react-three-fiber";
 
 import Branch from "components/Branch";
 import CameraOperator from "components/CameraOperator";
+import Debris from "components/Debris";
 import FlatText from "components/FlatText";
 import { useConfig } from "utils/config";
 
@@ -66,6 +67,8 @@ const Surf = ({ owner, repo, commits }) => {
           {`@${owner}`}
         </FlatText>
       )}
+
+      {commits.length && <Debris commitsCount={commits.length} />}
     </SurfContext.Provider>
   );
 };
