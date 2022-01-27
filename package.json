@@ -16,7 +16,7 @@
     "react-three-fiber": "^4.0.11",
     "react-transition-group": "^4.4.1",
     "stats.js": "^0.17.0",
-    "three": "^0.112.0",
+    "three": "^0.137.0",
     "three-bmfont-text": "https://github.com/dmarcos/three-bmfont-text.git",
     "zustand": "^2.2.1"
   },
