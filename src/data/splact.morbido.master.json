@@ -1,0 +1,770 @@
+[
+  {
+    "sha": "420e37c7272323caf776545d0bbccff01f58c545",
+    "index": 24,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/420e37c7272323caf776545d0bbccff01f58c545",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/420e37c7272323caf776545d0bbccff01f58c545",
+    "commit": {
+      "authorDate": "2019-10-08T22:10:28Z",
+      "date": "2019-10-08T22:10:28Z",
+      "message": "0.3.0",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/420e37c7272323caf776545d0bbccff01f58c545",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["572ef5267d87a4b2f8b045e93bd3d536bc98f18b"]
+  },
+  {
+    "sha": "572ef5267d87a4b2f8b045e93bd3d536bc98f18b",
+    "index": 23,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/572ef5267d87a4b2f8b045e93bd3d536bc98f18b",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/572ef5267d87a4b2f8b045e93bd3d536bc98f18b",
+    "commit": {
+      "authorDate": "2019-10-08T22:07:29Z",
+      "date": "2019-10-08T22:07:29Z",
+      "message": "Merge pull request #5 from Splact/feature/classes-option\n\nFeature/classes option",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/572ef5267d87a4b2f8b045e93bd3d536bc98f18b",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "GitHub",
+        "username": "web-flow",
+        "picture": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+        "url": "https://api.github.com/users/web-flow",
+        "htmlUrl": "https://github.com/web-flow"
+      }
+    ],
+    "parents": [
+      "bde3d40639d462f8533775ab41f8c6b7d8b2136a",
+      "7f31af160d01eec5044755e58cc8a12ead23a77f"
+    ]
+  },
+  {
+    "sha": "7f31af160d01eec5044755e58cc8a12ead23a77f",
+    "index": 22,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/7f31af160d01eec5044755e58cc8a12ead23a77f",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/7f31af160d01eec5044755e58cc8a12ead23a77f",
+    "commit": {
+      "authorDate": "2019-10-08T22:05:32Z",
+      "date": "2019-10-08T22:05:32Z",
+      "message": "Update example",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/7f31af160d01eec5044755e58cc8a12ead23a77f",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["928cbcc25d68114b25ba841228c53c48ff7b95f6"]
+  },
+  {
+    "sha": "928cbcc25d68114b25ba841228c53c48ff7b95f6",
+    "index": 21,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/928cbcc25d68114b25ba841228c53c48ff7b95f6",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/928cbcc25d68114b25ba841228c53c48ff7b95f6",
+    "commit": {
+      "authorDate": "2019-10-08T21:41:34Z",
+      "date": "2019-10-08T21:41:34Z",
+      "message": "Update readme",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/928cbcc25d68114b25ba841228c53c48ff7b95f6",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["b010fa8062d24af8cfb9eee2305bfe928404692d"]
+  },
+  {
+    "sha": "b010fa8062d24af8cfb9eee2305bfe928404692d",
+    "index": 20,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/b010fa8062d24af8cfb9eee2305bfe928404692d",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/b010fa8062d24af8cfb9eee2305bfe928404692d",
+    "commit": {
+      "authorDate": "2019-10-08T21:41:22Z",
+      "date": "2019-10-08T21:41:22Z",
+      "message": "Update example",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/b010fa8062d24af8cfb9eee2305bfe928404692d",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["a77e9ca1ee18496105bbb3b3bde1cacd41a484eb"]
+  },
+  {
+    "sha": "a77e9ca1ee18496105bbb3b3bde1cacd41a484eb",
+    "index": 19,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/a77e9ca1ee18496105bbb3b3bde1cacd41a484eb",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/a77e9ca1ee18496105bbb3b3bde1cacd41a484eb",
+    "commit": {
+      "authorDate": "2019-10-08T21:40:53Z",
+      "date": "2019-10-08T21:40:53Z",
+      "message": "Add exit/mutate/enter classes during mutations",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/a77e9ca1ee18496105bbb3b3bde1cacd41a484eb",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["bde3d40639d462f8533775ab41f8c6b7d8b2136a"]
+  },
+  {
+    "sha": "bde3d40639d462f8533775ab41f8c6b7d8b2136a",
+    "index": 18,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/bde3d40639d462f8533775ab41f8c6b7d8b2136a",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/bde3d40639d462f8533775ab41f8c6b7d8b2136a",
+    "commit": {
+      "authorDate": "2019-10-08T19:03:34Z",
+      "date": "2019-10-08T19:03:34Z",
+      "message": "Add multiple mutations protection",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/bde3d40639d462f8533775ab41f8c6b7d8b2136a",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["49c715465e2508290156495380ddf0ac49a264f8"]
+  },
+  {
+    "sha": "49c715465e2508290156495380ddf0ac49a264f8",
+    "index": 17,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/49c715465e2508290156495380ddf0ac49a264f8",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/49c715465e2508290156495380ddf0ac49a264f8",
+    "commit": {
+      "authorDate": "2019-10-05T20:03:22Z",
+      "date": "2019-10-05T20:03:22Z",
+      "message": "Fix readme example",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/49c715465e2508290156495380ddf0ac49a264f8",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["7db8499e0b91d574416a083f1800c8ffde717bdb"]
+  },
+  {
+    "sha": "7db8499e0b91d574416a083f1800c8ffde717bdb",
+    "index": 16,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/7db8499e0b91d574416a083f1800c8ffde717bdb",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/7db8499e0b91d574416a083f1800c8ffde717bdb",
+    "commit": {
+      "authorDate": "2019-10-05T19:54:30Z",
+      "date": "2019-10-05T19:54:30Z",
+      "message": "0.2.0",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/7db8499e0b91d574416a083f1800c8ffde717bdb",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["25b188cd79590741b6146675f45e083537d758c2"]
+  },
+  {
+    "sha": "25b188cd79590741b6146675f45e083537d758c2",
+    "index": 15,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/25b188cd79590741b6146675f45e083537d758c2",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/25b188cd79590741b6146675f45e083537d758c2",
+    "commit": {
+      "authorDate": "2019-10-05T19:53:05Z",
+      "date": "2019-10-05T19:53:05Z",
+      "message": "Update readme",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/25b188cd79590741b6146675f45e083537d758c2",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["11512892b2c0cf0aa7354af49572431ca6e532ba"]
+  },
+  {
+    "sha": "11512892b2c0cf0aa7354af49572431ca6e532ba",
+    "index": 14,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/11512892b2c0cf0aa7354af49572431ca6e532ba",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/11512892b2c0cf0aa7354af49572431ca6e532ba",
+    "commit": {
+      "authorDate": "2019-10-05T19:46:36Z",
+      "date": "2019-10-05T19:46:36Z",
+      "message": "Merge branch 'feature/mutate-interface'",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/11512892b2c0cf0aa7354af49572431ca6e532ba",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": [
+      "37d27b57fa55e5685e03cce2c5b37a749186a388",
+      "c8c811ebc83ac8ff7d10bbc42fb8fb5e3a5a780f"
+    ]
+  },
+  {
+    "sha": "37d27b57fa55e5685e03cce2c5b37a749186a388",
+    "index": 13,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/37d27b57fa55e5685e03cce2c5b37a749186a388",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/37d27b57fa55e5685e03cce2c5b37a749186a388",
+    "commit": {
+      "authorDate": "2019-10-05T13:42:06Z",
+      "date": "2019-10-05T13:42:06Z",
+      "message": "Merge branch 'feature/readme'",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/37d27b57fa55e5685e03cce2c5b37a749186a388",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": [
+      "99f7f23b4b49bbdd5e391c0c30e6615bcf6c42e0",
+      "5ed68cf15fe5498b8c0ac4227bd0f35cb3873237"
+    ]
+  },
+  {
+    "sha": "5ed68cf15fe5498b8c0ac4227bd0f35cb3873237",
+    "index": 12,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/5ed68cf15fe5498b8c0ac4227bd0f35cb3873237",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/5ed68cf15fe5498b8c0ac4227bd0f35cb3873237",
+    "commit": {
+      "authorDate": "2019-10-05T13:41:31Z",
+      "date": "2019-10-05T13:41:31Z",
+      "message": "Improve readme",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/5ed68cf15fe5498b8c0ac4227bd0f35cb3873237",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["9c998b4c23b9cc34b0303e7a10fd9beaf47bff0f"]
+  },
+  {
+    "sha": "99f7f23b4b49bbdd5e391c0c30e6615bcf6c42e0",
+    "index": 11,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/99f7f23b4b49bbdd5e391c0c30e6615bcf6c42e0",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/99f7f23b4b49bbdd5e391c0c30e6615bcf6c42e0",
+    "commit": {
+      "authorDate": "2019-10-05T12:49:53Z",
+      "date": "2019-10-05T12:49:53Z",
+      "message": "Merge pull request #3 from Splact/feature/better-example-logging\n\nImprove logs in the example",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/99f7f23b4b49bbdd5e391c0c30e6615bcf6c42e0",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Marco Acierno",
+      "username": "marcoacierno",
+      "picture": "https://avatars3.githubusercontent.com/u/3382153?v=4",
+      "url": "https://api.github.com/users/marcoacierno",
+      "htmlUrl": "https://github.com/marcoacierno"
+    },
+    "committer": [
+      {
+        "name": "GitHub",
+        "username": "web-flow",
+        "picture": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+        "url": "https://api.github.com/users/web-flow",
+        "htmlUrl": "https://github.com/web-flow"
+      }
+    ],
+    "parents": [
+      "9c998b4c23b9cc34b0303e7a10fd9beaf47bff0f",
+      "95ae6510237de3eb943ce6d99666b9f60b1f3b11"
+    ]
+  },
+  {
+    "sha": "9c998b4c23b9cc34b0303e7a10fd9beaf47bff0f",
+    "index": 10,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/9c998b4c23b9cc34b0303e7a10fd9beaf47bff0f",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/9c998b4c23b9cc34b0303e7a10fd9beaf47bff0f",
+    "commit": {
+      "authorDate": "2019-10-05T11:50:46Z",
+      "date": "2019-10-05T11:50:46Z",
+      "message": "Add rough readme",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/9c998b4c23b9cc34b0303e7a10fd9beaf47bff0f",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["1a369064dbd4e2334af5113b1e96d4c8ef15aff1"]
+  },
+  {
+    "sha": "1a369064dbd4e2334af5113b1e96d4c8ef15aff1",
+    "index": 9,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/1a369064dbd4e2334af5113b1e96d4c8ef15aff1",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/1a369064dbd4e2334af5113b1e96d4c8ef15aff1",
+    "commit": {
+      "authorDate": "2019-10-05T11:03:46Z",
+      "date": "2019-10-05T11:03:46Z",
+      "message": "Merge pull request #2 from Splact/fix/lint-staged-config\n\nAdd \"git add\" action in lint-staged config",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/1a369064dbd4e2334af5113b1e96d4c8ef15aff1",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Marco Acierno",
+      "username": "marcoacierno",
+      "picture": "https://avatars3.githubusercontent.com/u/3382153?v=4",
+      "url": "https://api.github.com/users/marcoacierno",
+      "htmlUrl": "https://github.com/marcoacierno"
+    },
+    "committer": [
+      {
+        "name": "GitHub",
+        "username": "web-flow",
+        "picture": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+        "url": "https://api.github.com/users/web-flow",
+        "htmlUrl": "https://github.com/web-flow"
+      }
+    ],
+    "parents": [
+      "db8d89e91713be21094674be8989b321befbf506",
+      "f5c53fcf285970792c98ba7c0f153a6213f6fa38"
+    ]
+  },
+  {
+    "sha": "c8c811ebc83ac8ff7d10bbc42fb8fb5e3a5a780f",
+    "index": 8,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/c8c811ebc83ac8ff7d10bbc42fb8fb5e3a5a780f",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/c8c811ebc83ac8ff7d10bbc42fb8fb5e3a5a780f",
+    "commit": {
+      "authorDate": "2019-10-05T11:02:06Z",
+      "date": "2019-10-05T11:02:06Z",
+      "message": "Remove debugger statement 👀",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/c8c811ebc83ac8ff7d10bbc42fb8fb5e3a5a780f",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["9481b538117c0b061d94654d6353ef7257f9e461"]
+  },
+  {
+    "sha": "db8d89e91713be21094674be8989b321befbf506",
+    "index": 7,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/db8d89e91713be21094674be8989b321befbf506",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/db8d89e91713be21094674be8989b321befbf506",
+    "commit": {
+      "authorDate": "2019-10-05T10:57:42Z",
+      "date": "2019-10-05T10:57:42Z",
+      "message": "Merge pull request #4 from Splact/fix/example-paths-for-gh-pages\n\nMake style and script paths relative",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/db8d89e91713be21094674be8989b321befbf506",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "GitHub",
+        "username": "web-flow",
+        "picture": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+        "url": "https://api.github.com/users/web-flow",
+        "htmlUrl": "https://github.com/web-flow"
+      }
+    ],
+    "parents": [
+      "309de803c4fcafb95d6c576e9040c4f8be2fca48",
+      "28e0c8c4c150a74ddf2a5bbd11a47c69281f084e"
+    ]
+  },
+  {
+    "sha": "28e0c8c4c150a74ddf2a5bbd11a47c69281f084e",
+    "index": 6,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/28e0c8c4c150a74ddf2a5bbd11a47c69281f084e",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/28e0c8c4c150a74ddf2a5bbd11a47c69281f084e",
+    "commit": {
+      "authorDate": "2019-10-05T10:52:10Z",
+      "date": "2019-10-05T10:52:10Z",
+      "message": "Make style and script paths relative",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/28e0c8c4c150a74ddf2a5bbd11a47c69281f084e",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["309de803c4fcafb95d6c576e9040c4f8be2fca48"]
+  },
+  {
+    "sha": "95ae6510237de3eb943ce6d99666b9f60b1f3b11",
+    "index": 5,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/95ae6510237de3eb943ce6d99666b9f60b1f3b11",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/95ae6510237de3eb943ce6d99666b9f60b1f3b11",
+    "commit": {
+      "authorDate": "2019-10-05T10:43:37Z",
+      "date": "2019-10-05T10:43:37Z",
+      "message": "Improve logs in the example",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/95ae6510237de3eb943ce6d99666b9f60b1f3b11",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["309de803c4fcafb95d6c576e9040c4f8be2fca48"]
+  },
+  {
+    "sha": "f5c53fcf285970792c98ba7c0f153a6213f6fa38",
+    "index": 4,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/f5c53fcf285970792c98ba7c0f153a6213f6fa38",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/f5c53fcf285970792c98ba7c0f153a6213f6fa38",
+    "commit": {
+      "authorDate": "2019-10-05T10:21:14Z",
+      "date": "2019-10-05T10:21:14Z",
+      "message": "Add \"git add\" action in lint-staged config",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/f5c53fcf285970792c98ba7c0f153a6213f6fa38",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["309de803c4fcafb95d6c576e9040c4f8be2fca48"]
+  },
+  {
+    "sha": "9481b538117c0b061d94654d6353ef7257f9e461",
+    "index": 3,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/9481b538117c0b061d94654d6353ef7257f9e461",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/9481b538117c0b061d94654d6353ef7257f9e461",
+    "commit": {
+      "authorDate": "2019-10-05T10:14:47Z",
+      "date": "2019-10-05T10:14:47Z",
+      "message": "Add mutate method for interactive calls",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/9481b538117c0b061d94654d6353ef7257f9e461",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["309de803c4fcafb95d6c576e9040c4f8be2fca48"]
+  },
+  {
+    "sha": "309de803c4fcafb95d6c576e9040c4f8be2fca48",
+    "index": 2,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/309de803c4fcafb95d6c576e9040c4f8be2fca48",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/309de803c4fcafb95d6c576e9040c4f8be2fca48",
+    "commit": {
+      "authorDate": "2019-10-05T10:12:06Z",
+      "date": "2019-10-05T10:12:06Z",
+      "message": "Update event interface",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/309de803c4fcafb95d6c576e9040c4f8be2fca48",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["c53dee06a23222a02de9b6c1950a40c4720739cf"]
+  },
+  {
+    "sha": "c53dee06a23222a02de9b6c1950a40c4720739cf",
+    "index": 1,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/c53dee06a23222a02de9b6c1950a40c4720739cf",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/c53dee06a23222a02de9b6c1950a40c4720739cf",
+    "commit": {
+      "authorDate": "2019-09-28T12:06:11Z",
+      "date": "2019-09-28T12:06:11Z",
+      "message": "Module setup",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/c53dee06a23222a02de9b6c1950a40c4720739cf",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "Dario Carella",
+        "username": "Splact",
+        "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+        "url": "https://api.github.com/users/Splact",
+        "htmlUrl": "https://github.com/Splact"
+      }
+    ],
+    "parents": ["8d8e1420cdbfa4fa08219a1241139b427def23f3"]
+  },
+  {
+    "sha": "8d8e1420cdbfa4fa08219a1241139b427def23f3",
+    "index": 0,
+    "url": "https://api.github.com/repos/Splact/morbido/commits/8d8e1420cdbfa4fa08219a1241139b427def23f3",
+    "htmlUrl": "https://github.com/Splact/morbido/commit/8d8e1420cdbfa4fa08219a1241139b427def23f3",
+    "commit": {
+      "authorDate": "2019-09-27T18:50:03Z",
+      "date": "2019-09-27T18:50:03Z",
+      "message": "Initial commit",
+      "url": "https://api.github.com/repos/Splact/morbido/git/commits/8d8e1420cdbfa4fa08219a1241139b427def23f3",
+      "commentCount": 0
+    },
+    "author": {
+      "name": "Dario Carella",
+      "username": "Splact",
+      "picture": "https://avatars1.githubusercontent.com/u/429443?v=4",
+      "url": "https://api.github.com/users/Splact",
+      "htmlUrl": "https://github.com/Splact"
+    },
+    "committer": [
+      {
+        "name": "GitHub",
+        "username": "web-flow",
+        "picture": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+        "url": "https://api.github.com/users/web-flow",
+        "htmlUrl": "https://github.com/web-flow"
+      }
+    ],
+    "parents": []
+  }
+]
